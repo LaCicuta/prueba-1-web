@@ -26,3 +26,9 @@
 .link:hover{
     color: indigo;
 }
+.card{
+    border: 1px black solid;
+    width: 180px;
+    height: 200px;
+    margin: 20px;
+}
