@@ -18,3 +18,11 @@
     color: aliceblue;
     width: 80px;
 }
+.link{
+    color:plum ;
+    text-decoration:none;
+    transition: .2s;
+}
+.link:hover{
+    color: indigo;
+}

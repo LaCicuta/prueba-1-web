@@ -28,7 +28,7 @@
             <div class="offcanvas-body">
               <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
                 <li class="letra-menu">
-                    <a href="#" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
+                    <a href="index.html" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
                 </li>
                 <li>
                     <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -36,10 +36,10 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="letra-menu" href="#">Nosotros</a>
+                    <a class="letra-menu" href="nosotros.html">Nosotros</a>
                 </li>
                 <li class="nav-item">
-                    <a class="letra-menu" href="#">Contáctanos</a>
+                    <a class="letra-menu" href="contactanos.html">Contáctanos</a>
                 </li>
               </ul>
               <form class="d-flex mt-3" role="search">
@@ -55,11 +55,11 @@
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="exampleModalLabel">Iniciar Sesión / Registrarse</h1>
+          <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-        <form>
+        <form action="inventario.html">
             <div class="mb-3">
               <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
               <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
@@ -73,11 +73,15 @@
               <input type="checkbox" class="form-check-input" id="exampleCheck1">
               <label class="form-check-label" for="exampleCheck1">Recordarme</label>
             </div>
+            <div class="mb-3 text-center">
+                ¿Aún no tienes una cuenta? <a href="registrarse.html" class="link">Registrate Aquí</a> <br>
+                <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+            </div>
           </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+          <button onclick="location.href='inventario.html'" type="button" class=" btn btn-primary">Iniciar Sesión</button>
         </div>
       </div>
     </div>
