@@ -12,16 +12,24 @@
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 </head>
 <body>
+  
+
+  <!-- linea de arriba -->
     <nav class="navbar bg-body-tertiary fixed-top">
         <div class="container-fluid" style="background-color: indigo;">
             <a href="index.html" class="navbar-brand text-white">
+              <!-- imagen y contenido de encabezado  -->
                 <i class="fs-2 bi-yelp"></i><span class="fs-2">Stock&Store</span>
             </a>
+            <!-- boton de arriba -->
           <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="border-color: aliceblue;">
             <span class="bi-list fs-3"></span>
           </button>
+     
+          <!-- recipiente del costado -->
           <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: mediumslateblue;">
             <div class="offcanvas-header">
+              <!-- titulo de recipiente del costado -->
               <h5 class="offcanvas-title fs-2" id="offcanvasNavbarLabel" style="color:white;"><i class="fs-2 bi-yelp"></i>Stock&Store</h5>
               <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
             </div>
@@ -50,41 +58,57 @@
           </div>
         </div>
       </nav>
-      <!-- Modal -->
+      <!-- Modal, especie de ventana flotante -->
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-        <form action="inventario.html">
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-              <div id="emailHelp" class="form-text">Guardamos tus datos con los más altos estándares de Seguridad.</div>
-            </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-              <input type="password" class="form-control" id="exampleInputPassword1">
-            </div>
-            <div class="mb-3 form-check">
-              <input type="checkbox" class="form-check-input" id="exampleCheck1">
-              <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-            </div>
-            <div class="mb-3 text-center">
-                ¿Aún no tienes una cuenta? <a href="registrarse.html" class="link">Registrate Aquí</a> <br>
-                <a href="#" class="link">¿Olvidaste tu contraseña?</a>
-            </div>
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-          <button onclick="location.href='inicio.html'" type="button" class=" btn btn-primary">Iniciar Sesión</button>
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          <form action="inventario.html"><!-- xxxxxxxxxxxxxxxxxxxx preguntar accion de este comandoxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx -->
+            <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
+              <div class="mb-3">
+                <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                <div id="emailHelp" class="form-text">Guardamos tus datos con los más altos estándares de Seguridad.</div>
+              </div>
+              <div class="mb-3">
+                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="exampleInputPassword1">
+              </div>
+              <!-- boton de chek a recordad -->
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Recordarme</label>
+              </div>
+              <div class="mb-3 text-center">
+                  ¿Aún no tienes una cuenta? <a href="registrarse.html" class="link">Registrate Aquí</a> <br>
+                  <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button onclick="location.href='inicio.html'" type="button" class=" btn btn-primary">Iniciar Sesión</button>
+          </div>
         </div>
       </div>
-    </div>
   </div>
+  <!-- contenido del centro -->
+  <div class="container">
+    <div class="content">
+        <br><br><br><br>
+        <h5 class="offcanvas-title fs-2" id="offcanvasNavbarLabel" style="color:rgb(2, 1, 1);">Stock & Store</h5>
+        <br>
+        
+          <img src="C:\Users\Christopher\programaciones\prueba-1-web\img\fondo.png" class="img-fluid" alt="imagenreferencial">
+        <br>
+        <h3 class="offcanvas-title fs-2" id="offcanvasNavbarLabel" style="color:rgb(2, 1, 1);">Lorem Ipsum es simplemente el texto de relleno de las imprentas y archivos de texto. Lorem Ipsum ha sido el texto de relleno estándar de las industrias desde el año 1500, cuando un impresor (N. del T. persona que se dedica a la imprenta) desconocido usó una galería de textos y los mezcló de tal manera que logró hacer un libro de textos especimen. No sólo sobrevivió 500 años, sino que tambien ingresó como texto de relleno en documentos electrónicos, quedando esencialmente igual al original. Fue popularizado en los 60s con la creación de las hojas "Letraset", las cuales contenian pasajes de Lorem Ipsum, y más recientemente con software de autoedición, como por ejemplo Aldus PageMaker, el cual incluye versiones de Lorem Ipsum</h3>
+
+    </div>
+</div>
+
 </body>
 </html>
