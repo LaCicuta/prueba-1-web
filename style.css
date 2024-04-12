@@ -27,11 +27,9 @@
     color: indigo;
 }
 .card{
-    border: 1px black solid;
-    min-width: 150px;
-    min-height: 200px;
-    max-width: 150px;
-    max-height: 200px;
+    color: mediumpurple;
+    border: 1px black;
+    height: 250px!important;
     margin: 20px;
     transition: .03s;
 }
