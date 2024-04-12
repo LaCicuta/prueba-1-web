@@ -28,7 +28,32 @@
 }
 .card{
     border: 1px black solid;
-    width: 180px;
-    height: 200px;
+    min-width: 150px;
+    min-height: 200px;
+    max-width: 150px;
+    max-height: 200px;
     margin: 20px;
+    transition: .03s;
+}
+.card:hover{
+    border: 3px indigo solid;
+}
+
+.sidebar{
+    height: 100%;
+    width: 20%;
+    max-width: 220px;
+    background-color: indigo;
+    position: fixed!important;/*Elemento*/
+    z-index:1; /*Establece prioridad en aparición*/
+    overflow:auto; /*Activa la barra de navegación en caso de ser necesaria*/
+    left: 0;
+}
+.opcion-menu{
+    padding:8px 16px;
+    float:left;
+    width:auto;
+    border:none;
+    display:block;
+    outline:0
 }

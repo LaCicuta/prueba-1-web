@@ -14,25 +14,13 @@
 <body>
     <div class="container-fluid">
         <div class="row">
-            <div class="col-auto col-md-3 col-xl-2 px-sm-2 px-0" style="background-color:indigo">
+            <div class="col-auto" style="background-color:indigo; min-width: 20%;">
                 <div class="d-flex flex-column align-items-center align-items-sm-start px-3 pt-2 text-white min-vh-100">
-                    <a href="javascript:location.reload()" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
-                        <i class="fs-2 bi-yelp"></i><span class="fs-2 d-none d-sm-inline">Stock&Store</span>
+                    <a href="javascript:location.reload()" class="nav-link text-white">
+                        <i class="bi-yelp fs-2"></i><span class="ms-1 d-none d-sm-inline flex-grow-1 fs-3">Stock&Store</span>
                     </a>
-                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
-                        <li class="nav-item">
-                            <a href="#" class="nav-link align-middle px-0 text-white" >
-                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span>
-                            </a> 
-                        </li>
-                        <li class="nav-item">
-                            <a href="#" class="nav-link align-middle px-0 text-white" >
-                                <i class="fs-4 bi-clipboard2-data"></i> <span class="ms-1 d-none d-sm-inline">Inventario</span>
-                            </a>
-                        </li>
-                    </ul>
-                    <hr>
-                    <div class="dropdown pb-4">
+                    <br>
+                    <div class="dropdown">
                         <a href="#" class="d-flex align-items-center text-white text-decoration-none 
                         dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="bi-person-circle fs-2"></i>
@@ -45,12 +33,28 @@
                           <a class="dropdown-item" href="index.html">Cerrar Sesion</a>
                         </div>
                     </div>
+                    <br>
+                    <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
+                        <li class="nav-item">
+                            <a href="inicio.html" class="nav-link align-middle px-0 text-white" >
+                                <i class="fs-4 bi-house"></i> <span class="ms-1 d-none d-sm-inline">Inicio</span>
+                            </a> 
+                        </li>
+                        <li class="nav-item">
+                            <a href="inventario.html" class="nav-link align-middle px-0 text-white" >
+                                <i class="fs-4 bi-clipboard2-data"></i> <span class="ms-1 d-none d-sm-inline">Inventario</span>
+                            </a>
+                        </li>
+                    </ul>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <div class="card"></div>
-            <div class="card"></div> 
+                <div class="col card"></div>
+                <div class="col card"></div>
+                <div class="col card"></div>
+                <div class="col card"></div>
+                <div class="col card"></div>
+                <div class="col card"></div>
+            </div>
         </div>
     </div>   
 </body>
