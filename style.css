@@ -39,7 +39,7 @@
     margin-top: 5px;
 }
 
-.sidebar{
+.sidebar{ /*Crea la barra laterar en sesión de usuario*/
     height: 100%;
     width: 20%;
     max-width: 220px;
@@ -49,12 +49,12 @@
     overflow:auto; /*Activa la barra de navegación en caso de ser necesaria*/
 }
 
-.selected{
+.selected{/*Destaca la página seleccionada del sidevar*/
     background-color: aliceblue !important;
     padding-top: 0px !important;
      color: indigo !important;
 }
-.usuario{
+.usuario{ /*Atributos del enlace a usuario en sesión*/
     width: auto;
     border: 3px white solid;
     padding: 2px 20px 5px;
