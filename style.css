@@ -47,13 +47,27 @@
     position: fixed!important;/*Elemento*/
     z-index:1; /*Establece prioridad en aparición*/
     overflow:auto; /*Activa la barra de navegación en caso de ser necesaria*/
-    left: 0;
 }
-.opcion-menu{
-    padding:8px 16px;
-    float:left;
-    width:auto;
-    border:none;
-    display:block;
-    outline:0
-}
+
+.contenido{
+    background-color:rgb(239, 218, 255);
+    padding: 5px;
+  }
+    @media (max-width: 575.98px) {
+        .contenido {
+            margin-left: 20% !important;
+        }
+    }
+    @media (min-width: 576px ) {
+        .contenido {
+            margin-left: 220px;
+            
+        }
+    }
+    @media (min-width: 576px ) {
+        .sidebar {
+            width: 220px !important;
+            
+        }
+    }
+    
