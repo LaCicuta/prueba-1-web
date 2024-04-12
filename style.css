@@ -49,25 +49,38 @@
     overflow:auto; /*Activa la barra de navegación en caso de ser necesaria*/
 }
 
-.contenido{
+.selected{
+    background-color: aliceblue !important;
+    padding-top: 0px !important;
+     color: indigo !important;
+}
+.usuario{
+    width: auto;
+    border: 3px white solid;
+    padding: 2px 20px 5px;
+    align-self: center;
+}
+
+.contenido{ /*Container a la derecha del sidevar*/
     background-color:rgb(239, 218, 255);
     padding: 5px;
   }
-    @media (max-width: 575.98px) {
+    @media (max-width: 575.98px) {/*Cambia el tamaño de cotenido si la ventana es pequeña*/
         .contenido {
             margin-left: 20% !important;
         }
     }
-    @media (min-width: 576px ) {
+    @media (min-width: 576px ) { /*fija el margen con la sidebar en pantalla grande*/
         .contenido {
             margin-left: 220px;
             
         }
     }
-    @media (min-width: 576px ) {
+    @media (min-width: 576px ) {/*fija el tamaño del sidebar en pantalla grande*/
         .sidebar {
             width: 220px !important;
             
         }
     }
+
     
