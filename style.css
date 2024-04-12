@@ -27,14 +27,16 @@
     color: indigo;
 }
 .card{
-    color: mediumpurple;
-    border: 1px black;
-    height: 250px!important;
+    width: 14rem !important;
     margin: 20px;
     transition: .03s;
+    background-color:ghostwhite !important;
 }
 .card:hover{
     border: 3px indigo solid;
+}
+.imagen{
+    margin-top: 5px;
 }
 
 .sidebar{
