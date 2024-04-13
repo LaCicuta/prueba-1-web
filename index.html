@@ -15,87 +15,89 @@
   
 
   <!-- linea de arriba -->
-    <nav class="navbar bg-body-tertiary fixed-top">
-        <div class="container-fluid" style="background-color: indigo;">
-            <a href="index.html" class="navbar-brand text-white">
-              <!-- imagen y contenido de encabezado  -->
-                <i class="fs-2 bi-yelp"></i><span class="fs-2">Stock&Store</span>
-            </a>
-            <!-- boton de arriba -->
-          <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="border-color: aliceblue;">
-            <span class="bi-list fs-3"></span>
-          </button>
-     
-          <!-- recipiente del costado -->
-          <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: mediumslateblue;">
-            <div class="offcanvas-header">
-              <!-- titulo de recipiente del costado -->
-              <h5 class="offcanvas-title fs-2" id="offcanvasNavbarLabel" style="color:white;"><i class="fs-2 bi-yelp"></i>Stock&Store</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-              <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <li class="letra-menu">
-                    <a href="index.html" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
-                </li>
-                <li>
-                    <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                        Iniciar Sesión / Registrarse
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="letra-menu" href="nosotros.html">Nosotros</a>
-                </li>
-                <li class="nav-item">
-                    <a class="letra-menu" href="contactanos.html">Contáctanos</a>
-                </li>
-              </ul>
-              <form class="d-flex mt-3" role="search">
-                <input class="form-control me-2" type="search" placeholder="Búsqueda" aria-label="Search">
-                <button class="boton" type="submit">Buscar</button>
-              </form>
-            </div>
-          </div>
+  <nav class="navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid" style="background-color: indigo;">
+      <a href="index.html" class="navbar-brand text-white">
+        <!-- imagen y contenido de encabezado  -->
+          <i class="fs-2 bi-yelp"></i><span class="fs-2">Stock&Store</span>
+      </a>
+
+      <!-- boton de arriba -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="border-color: aliceblue;">
+        <span class="bi-list fs-3"></span>
+      </button>
+  
+      <!-- recipiente del costado -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: mediumslateblue;">
+        <div class="offcanvas-header">
+          <!-- titulo de recipiente del costado -->
+          <h5 class="offcanvas-title fs-2" id="offcanvasNavbarLabel" style="color:white;"><i class="fs-2 bi-yelp"></i>Stock&Store</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-      </nav>
-      <!-- Modal, especie de ventana flotante -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-          <form action="inventario.html"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
-            <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
-              <div class="mb-3">
-                <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
-                <div id="emailHelp" class="form-text">Guardamos tus datos con los más altos estándares de Seguridad.</div>
-              </div>
-              <div class="mb-3">
-                <label for="exampleInputPassword1" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="exampleInputPassword1">
-              </div>
-              <!-- boton de chek a recordad -->
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-              </div>
-              <div class="mb-3 text-center">
-                  ¿Aún no tienes una cuenta? <a href="registrarse.html" class="link">Registrate Aquí</a> <br>
-                  <a href="#" class="link">¿Olvidaste tu contraseña?</a>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button onclick="location.href='inicio.html'" type="button" class=" btn btn-primary">Iniciar Sesión</button>
-          </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="letra-menu">
+              <a href="index.html" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
+            </li>
+            <li>
+              <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Iniciar Sesión / Registrarse
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="letra-menu" href="nosotros.html">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="letra-menu" href="contactanos.html">Contáctanos</a>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Búsqueda" aria-label="Search">
+            <button class="boton" type="submit">Buscar</button>
+          </form>
         </div>
       </div>
+    </div>
+  </nav>
+  <!-- Modal, especie de ventana flotante -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+        <form action="inventario.html"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
+          <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
+            <div class="mb-3">
+              <label for="exampleInputEmail1" class="form-label">Correo Electrónico</label>
+              <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+              <div id="emailHelp" class="form-text">Guardamos tus datos con los más altos estándares de Seguridad.</div>
+            </div>
+            <div class="mb-3">
+              <label for="exampleInputPassword1" class="form-label">Contraseña</label>
+              <input type="password" class="form-control" id="exampleInputPassword1">
+            </div>
+            <!-- boton de chek a recordad -->
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Recordarme</label>
+            </div>
+            <div class="mb-3 text-center">
+                ¿Aún no tienes una cuenta? <a href="registrarse.html" class="link">Registrate Aquí</a> <br>
+                <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button onclick="location.href='inicio.html'" type="button" class=" btn btn-primary">Iniciar Sesión</button>
+        </div>
+      </div>
+    </div>
   </div>
+  
   <!-- contenido del centro -->
   <div class="container">
     <div class="content">

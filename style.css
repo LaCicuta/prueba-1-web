@@ -35,8 +35,24 @@
 .card:hover{
     border: 3px indigo solid;
 }
+.boton-card{
+    background-color:white;
+    border: 2px indigo solid;
+    color: indigo;
+    transition: .1s;
+
+}
+.boton-card:hover{
+    background-color: indigo;
+    color: white;
+}
 .imagen{
     margin-top: 5px;
+}
+.imagen-modal{
+    width: 300px;
+    height: auto;
+    margin-left: 80px;
 }
 
 .sidebar{ /*Crea la barra laterar en sesión de usuario*/
