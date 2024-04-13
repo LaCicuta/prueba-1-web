@@ -33,17 +33,19 @@
     height: 200px;
     object-fit: cover;
 }
-#carouselExampleDark {
+#carouselExampleDark ,#carouselExampleSlidesOnly{
     width: 100%;
     height: 400px;
     overflow: hidden;
     align-items: center;
   }
   
-  #carouselExampleDark .carousel-item img {
+  #carouselExampleDark , #carouselExampleSlidesOnly .carousel-item img {
     width: auto;
     height: auto;
   }
+
+  
 
 .card{
     width: 14rem !important;
