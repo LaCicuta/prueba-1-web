@@ -117,7 +117,7 @@
      
         <!--FORMULARIO-->
 
-        <form class="row g-3 needs-validation" action="./index.html" method="POST" id="enviarContacto" novalidate>
+        <form class="row g-3 needs-validation" action="./index.html" method="POST" id="form">
           <div class="col-md-4 position-relative">
             <label for="name" class="form-label">Nombre (*)</label>
             <input type="text" class="form-control" id="name" value="" required>
@@ -137,7 +137,7 @@
          
           <div class="col-md-4 position-relative">
             <label for="city" class="form-label">Ciudad</label>
-            <input type="text" class="form-control" id="city" required>
+            <input type="text" class="form-control" id="city">
           </div>
           <div class="col-md-4 position-relative">
             <label for="sexo" class="form-label">Sexo (*)</label>
@@ -151,17 +151,17 @@
             <label for="sexo" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
-            <label for="phone" class="form-label">Numero de contacto</label>
-            <input type="text" class="form-control" id="phone" required>
+            <label for="phone" class="form-label">Número de contacto</label>
+            <input type="text" class="form-control" id="phone">
           </div>
           <div class="col-12">
-            <button class="btn btn-primary" type="submit" onclick="return checkForm()" id="submitBtn" >Enviar para contactar</button>
+            <button class="btn btn-primary" type="submit" onclick="checkForm()">Enviar para contactar</button>
           </div>
         </form>
         <br>
 
         <!--Modal-->
-        <div class="modal fade" id="infoEnviada" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal fade" id="formEnviado">
           <div class="modal-dialog">
             <div class="modal-content">
               <div class="modal-header">
@@ -174,8 +174,6 @@
                   <p>Responderemos su solicitud en la brevedad.</p>
                 </div>
               </div>
-              <div class="modal-footer">
-              </div>
             </div>
           </div>
         </div>
@@ -186,6 +184,6 @@
 
   <script src="./js/bootstrap.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="./script.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>

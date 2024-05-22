@@ -4,16 +4,15 @@ elements.forEach(element => {
     element.hidden=true;    
 });
 
-const form = document.getElementById('enviarContacto');
-const modal = new bootstrap.Modal(document.getElementById('infoEnviada'));
-
-form.addEventListener('submit', (e) => {
-    e.preventDefault();
+document.getElementById('form').addEventListener('submit', function(event){
+    event.preventDefault();
+    checkForm();
     if(checkForm){
+        const modal = new bootstrap.Modal(document.getElementById('formEnviado'));
         modal.show();
-        setTimeout(() => {
-            form.submit.bind(form)();
-        }, 4000); 
+        setTimeout(function(){
+            document.getElementById('form').submit();
+        }, 3000); 
     }
 });
 
@@ -30,15 +29,13 @@ function checkForm(){//Validar solicitud de contacto
                 element.hidden=false;
             }
         } else if(element.getAttribute('id')=="msgCorreo"){
-            re=/.+@[a-z0-9.\-]+\.[a-z]{2,}$/
+            const re = /.+@[a-z0-9.\-]+\.[a-z]{2,}$/;
             if(!re.test(check)){
                 flag=false;
                 element.hidden=false;
             }
         } else{ element.hidden=true; }
     });
-    if(flag){
-        return true;
-    }
-    return false;
+    return flag;
 }
+
