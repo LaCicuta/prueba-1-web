@@ -45,7 +45,11 @@
     height: auto;
   }
 
-  
+.warningReq{
+  color: red;
+    font-size: 15px;
+    font-weight: bold;
+} 
 
 .card{
     width: 14rem !important;
