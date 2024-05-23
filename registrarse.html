@@ -111,19 +111,19 @@
      
         <!--FORMULARIO-->
 
-        <form class="row g-3 needs-validation" action="./index.html" method="POST" id="crearUser" novalidate>
+        <form class="row g-3 needs-validation" action="./index.html" method="POST" id="form">
           <div class="col-md-4 position-relative">
-            <label for="name" class="form-label">Nombre</label>
+            <label for="name" class="form-label">Nombre (*)</label>
             <input type="text" class="form-control" id="name" value="" required>
             <label for="name" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
-            <label for="lName" class="form-label">Apellido</label>
+            <label for="lName" class="form-label">Apellido (*)</label>
             <input type="text" class="form-control" id="lName" value="" required>
             <label for="lName" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
-            <label for="email" class="form-label">Correo electronico</label>
+            <label for="email" class="form-label">Correo electronico (*)</label>
             <input type="text" class="form-control" id="email" value="" required>
             <label for="email" class="warningReq">Campo obligatorio.</label>
             <label for="email" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
@@ -145,24 +145,26 @@
             <label for="sexo" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
-            <label for="phone" class="form-label">Numero de contacto</label>
+            <label for="phone" class="form-label">Número de contacto (*)</label>
             <input type="text" class="form-control" id="phone" required>
             <label for="phone" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
-            <label for="fNac" class="form-label">Fecha de nacimiento</label>
+            <label for="fNac" class="form-label">Fecha de nacimiento (*)</label>
             <input type="text" class="form-control" id="fNac" required>
             <label for="fNac" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
-            <label for="nickName" class="form-label">Nick name</label>
+            <label for="nickName" class="form-label">Usuario (*)</label>
             <input type="text" class="form-control" id="nickName" required>
             <label for="nickName" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
-            <label for="passwrd" class="form-label">Contraseña</label>
+            <label for="passwrd" class="form-label">Contraseña (*)</label>
             <input type="password" class="form-control" id="passwrd" required>
             <label for="passwrd" class="warningReq">Campo obligatorio.</label>
+            <label for="passwrd" class="warningReq" id="msgPass">La contraseña que has escrito no cumple los requisitos de la directiva de contraseñas. Prueba con otra que sea más larga o más compleja.</label>
+            <label for="passwrd" class="correct" id="msgPassOk">La contraseña elegida es segura.</label>
           </div>
           <div class="col-12">
             <button class="btn btn-primary" type="submit" onclick="return checkForm()" id="submitBtn" >Crear cuenta</button>
@@ -172,7 +174,7 @@
   </div>
 
   <!--Modal-->
-  <div class="modal fade" id="userCreado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="formEnviado">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">

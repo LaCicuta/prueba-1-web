@@ -1,30 +1,38 @@
 const elements = document.querySelectorAll('.warningReq'); //Llama a los mensajes de error
+const msgPassOk = document.getElementById('msgPassOk');
 elements.forEach(element => { //Itera en cada uno
     element.hidden=true; //Los oculta    
 });
+if(msgPassOk){ msgPassOk.hidden=true;};
 
 /*Validador de casillas requeridas y formato e datos*/
-function checkForm(){
+function checkForm(){//Validar solicitud de contacto
     flag = true;
-    const elements = document.querySelectorAll('.warningReq'); //Llama a los label de warning
+    const elements = document.querySelectorAll('.warningReq');
     elements.forEach(element => {
-        const check = document.getElementById(element.getAttribute('for')).value; //Llama a los input de cada label warning
-        if(check==""||check==null){ 
+        const check = document.getElementById(element.getAttribute('for')).value;
+        if(check==""||check==null){
             if(element.getAttribute('id')=="msgCorreo"){ 
-                element.hidden=true; //Si está vacía no muestra el mensaje de correo erroneo
+                element.hidden=true;
             }else{
                 flag=false;
-                element.hidden=false; //Si está vacía muestra el mensaje de error
+                element.hidden=false;
             }
         } else if(element.getAttribute('id')=="msgCorreo"){
-            const re = /.+@[a-z0-9.\-]+\.[a-z]{2,}$/; //Formato de correo correcto
-            if(!re.test(check)){
-                flag=false;
-                element.hidden=false; //Si no cumple el formato muestra mensaje de error
-            }
-        } else{ element.hidden=true; } //Si no está vacía no muestra el mensaje de error
+            re=/.+@[a-z0-9.\-]+\.[a-z]{2,}$/
+            flag = re.test(check);
+            element.hidden=re.test(check);
+        } else if(element.getAttribute('id')=="msgPass"){
+            pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-_=+;:,.<>?/~]).{10,18}$/;
+            flag = pass.test(check);
+            element.hidden=pass.test(check);
+            document.getElementById('msgPassOk').hidden=!pass.test(check);
+        } else{ element.hidden=true; }
     });
-    return flag; //Regresa true o false según si hay o no errores
+    if(flag){
+        return true;
+    }
+    return false;
 }
 
 /*Mostrar modal de envío exitoso*/
