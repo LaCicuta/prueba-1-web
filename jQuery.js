@@ -12,7 +12,7 @@ $(document).ready(function(){
         const now = new Date();
         const time = now.toLocaleTimeString('es-CL', { hour: '2-digit', minute: '2-digit', second: '2-digit' });
         $("#hora").text(time);
-    }, 100);
+    }, 100); //Se actualiza cada 100ms
 });
 
 /*Consumo API de finanzas*/
