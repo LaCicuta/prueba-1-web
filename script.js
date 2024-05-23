@@ -44,6 +44,6 @@ document.getElementById('form').addEventListener('submit', function(event){ //Ev
         modal.show(); //Muestra Modal de envío exitoso
         setTimeout(function(){
             document.getElementById('form').submit();
-        }, 3000); //Pasado 3 segundos activa el sumbit
+        }, 3000); //Pasado 3 segundos activa el submit
     }
 });
