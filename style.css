@@ -56,6 +56,23 @@
     font-weight: bold;
 }
 
+.fecha{
+  color: indigo;
+  border-right-width: 5px;
+  border-right: indigo solid;
+  font-weight: bold;
+}
+.hora{
+  color: indigo;
+  border-left-width: 5px;
+  border-left: indigo solid;
+  font-weight: bold;
+}
+.money{
+  color: rgb(11, 59, 99);
+  font-weight:bolder;
+}
+
 .card{
     width: 14rem !important;
     margin: 20px;

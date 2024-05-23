@@ -49,13 +49,3 @@ document.getElementById('form').addEventListener('submit', function(event){ //Ev
 });
 
 
-/*API*/
-$("#enviar").click(function(){
-    $.get("https://mindicador.cl/api", function(data) {
-        $("<p/>", {
-            html: 'El valor actual del dolar es $' + data.dolar.valor
-        }).appendTo("body");
-    }).fail(function() {
-        console.log('Error. No se ha podido conectar a la API');
-    });
-});

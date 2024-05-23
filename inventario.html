@@ -8,9 +8,6 @@
   <link rel="stylesheet" href="./style.css">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <link rel="stylesheet" href="./icons/font/bootstrap-icons.css">
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-  <script src="./js/bootstrap.min.js"></script>
 </head>
 <body>
   <div class="d-flex h-100">
@@ -51,6 +48,14 @@
   <div class="contenido align-self-end min-vh-100"><!--Contenido de la página-->
     <div class="container">
       <div class="row d-flex justify-content-center align-content-center">
+        <nav class="navbar fixed navbar-light bg-light rounded-pill mb-3 pr-5" id="finanzas">
+          <div class="col-2 fecha text-center px-1" id="fecha"></div>
+          <div class="col-2 money text-center px-1" id="uf"></div>
+          <div class="col-2 money text-center px-1" id="dolar"></div>
+          <div class="col-2 money text-center px-1" id="euro"></div>
+          <div class="col-2 hora text-center px-1 me-0" id="hora"></div>
+        </nav>
+
         <div class="card col-xl-2 col-lg-3 col-md-3 col-6">
           <img src="./img/cholitos.jpeg" class="imagen" alt="cholitos">
           <div class="card-body">
@@ -270,5 +275,13 @@
       </div>
     </div>
   </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <script type="text/javascript" src="./script.js"></script>
+  <script type="text/javascript" src="./jQuery.js"></script>
+
 </body>
 </html>
