@@ -11,8 +11,8 @@ function checkForm(){//Validar solicitud de contacto
     const elements = document.querySelectorAll('.warningReq');
     elements.forEach(element => {
         const check = document.getElementById(element.getAttribute('for')).value;
-        if(check==""||check==null){
-            if(element.getAttribute('id')=="msgCorreo"){ 
+        if(check==""||check==null||check.lenght < 1){
+            if(element.id=="msgCorreo" || element.id=="msgPass"){ 
                 element.hidden=true;
             }else{
                 flag=false;
@@ -36,16 +36,29 @@ function checkForm(){//Validar solicitud de contacto
 }
 
 /*Mostrar modal de envío exitoso*/
-document.getElementById('form').addEventListener('submit', function(event){ //Evento de envío
-    event.preventDefault(); //Cancela el Submit
-    checkForm(); // Comprueba que las casillas estén sin errores
-    if(checkForm){
-        const modal = new bootstrap.Modal(document.getElementById('formEnviado')); //Instancia de Modal
-        modal.show(); //Muestra Modal de envío exitoso
-        setTimeout(function(){
-            document.getElementById('form').submit();
-        }, 3000); //Pasado 3 segundos activa el submit
-    }
-});
+const form = document.getElementById('form');
+if(form){
+    form.addEventListener('submit', function(event){ //Evento de envío
+        event.preventDefault(); //Cancela el Submit
+        checkForm(); // Comprueba que las casillas estén sin errores
+        if(checkForm){
+            const modal = new bootstrap.Modal(document.getElementById('formEnviado')); //Instancia de Modal
+            modal.show(); //Muestra Modal de envío exitoso
+            setTimeout(function(){
+                document.getElementById('form').submit();
+            }, 3000); //Pasado 3 segundos activa el submit
+        }
+    });
+}
 
-
+/*Desea Cerrar */
+const cerrarSesion = document.getElementById('cerrarSesion');
+if(cerrarSesion){
+    cerrarSesion.addEventListener('click', function(e){
+        e.preventDefault();
+        const confirmar = window.confirm('¿Desea cerrar sesión?');
+        if (confirmar ==true){
+            location.href="./index.html";
+        }
+    });
+}
