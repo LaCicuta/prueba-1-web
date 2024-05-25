@@ -26,3 +26,24 @@ $(document).ready(function(){
         console.log('Error. No se ha podido conectar a la API');
     });
 });
+
+/*Ingresar datos a modal*/
+$(document).ready(function(){
+    $(".editarProd").on('click', function(){
+        var prodEditar = $(this).attr('for');
+        $('#imgModalGral').attr("src", $(".imagen."+prodEditar).attr('src'));
+        $('#tituloModGral').val($(".card-title."+prodEditar).text());
+        $('#detModGral').val($(".card-text."+prodEditar).text());
+        $('#pesoModGral').val(soloNumeros($(".peso."+prodEditar).text()));
+        $('#stockModGral').val(soloNumeros($(".stock."+prodEditar).text()));
+        $('#precioModGral').val(soloNumeros($(".precio."+prodEditar).text()));
+
+        function soloNumeros(text){
+            const number = text.match(/\d+/);
+            return number ? number[0] : ''; 
+        };
+
+        const modalGral = new bootstrap.Modal(document.getElementById('modalGral'));
+        modalGral.show();
+    })
+});
