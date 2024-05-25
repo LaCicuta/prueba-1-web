@@ -55,6 +55,7 @@
       </div>
     </div>
   </nav>
+
   <!-- Modal, especie de ventana flotante -->
   <form action="./inicio.html">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -148,11 +149,13 @@
             <label for="phone" class="form-label">Número de contacto (*)</label>
             <input type="text" class="form-control" id="phone" required>
             <label for="phone" class="warningReq">Campo obligatorio.</label>
+            <label for="phone" class="warningReq" id="msgPhone">El formato de teléfono es +XXXXXXXXXXX (Código de area + 8 dígitos)</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="fNac" class="form-label">Fecha de nacimiento (*)</label>
             <input type="text" class="form-control" id="fNac" required>
             <label for="fNac" class="warningReq">Campo obligatorio.</label>
+            <label for="fNac" class="warningReq" id="msgDate">La fecha no cumple con el formato solicitado.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="nickName" class="form-label">Usuario (*)</label>

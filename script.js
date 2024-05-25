@@ -12,23 +12,39 @@ function checkForm(){//Validar solicitud de contacto
     elements.forEach(element => {
         const check = document.getElementById(element.getAttribute('for')).value;
         if(check==""||check==null||check.lenght < 1){
-            if(element.id=="msgCorreo" || element.id=="msgPass"){ 
+            if(element.id=="msgCorreo" || element.id=="msgPass" || element.id=="msgDate" || element.id=="msgPhone"){ 
                 element.hidden=true;
             }else{
                 flag=false;
                 element.hidden=false;
             }
+
         } else if(element.getAttribute('id')=="msgCorreo"){
             re=/.+@[a-z0-9.\-]+\.[a-z]{2,}$/
-            flag = re.test(check);
             element.hidden=re.test(check);
+            flag = re.test(check);
+
         } else if(element.getAttribute('id')=="msgPass"){
             pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*-_=+;:,.<>?/~]).{10,18}$/;
-            flag = pass.test(check);
             element.hidden=pass.test(check);
             document.getElementById('msgPassOk').hidden=!pass.test(check);
-        } else{ element.hidden=true; }
+            flag=pass.test(check);
+
+        } else if (element.getAttribute('id') == "msgDate") {
+            date= /^(0[1-9]|[1-2][0-9]|3[0-1])\/(0[1-9]|1[0-2])\/[0-9]{4}$/;
+            element.hidden = date.test(check);
+            flag=date.test(check);
+
+        } else if (element.getAttribute('id') == "msgPhone") {
+            phone= /^\+([0-9]{11})$/;
+            element.hidden = phone.test(check);
+            flag=phone.test(check);
+        }
+
+        else{ element.hidden=true; }
+
     });
+
     if(flag){
         return true;
     }
