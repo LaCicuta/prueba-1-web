@@ -57,7 +57,7 @@ if(cerrarSesion){
     cerrarSesion.addEventListener('click', function(e){
         e.preventDefault();
         const confirmar = window.confirm('¿Desea cerrar sesión?');
-        if (confirmar ==true){
+        if (confirmar){
             location.href="./index.html";
         }
     });
