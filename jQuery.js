@@ -6,7 +6,7 @@ $(document).ready(function(){
     $("#fecha").append(hoy.toLocaleDateString('es-CL', options));
 });
 
-/*Hora*/
+/*Hora */
 $(document).ready(function(){
     setInterval(function() {
         const now = new Date();
