@@ -1,0 +1,203 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'bodega/icons/yelp.svg' %}">
+  <title>Stock&Store</title>
+  <link rel="stylesheet" href="{% static 'bodega/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bodega/icons/font/bootstrap-icons.css' %}">
+  <link rel="stylesheet" href="{% static 'bodega/style.css' %}">
+</head>
+<body>
+    <!-- linea de arriba -->
+  <nav class="navbar bg-body-tertiary fixed-top">
+    <div class="container-fluid" style="background-color: indigo;">
+      <a href="{% static 'bodega/index.html' %}" class="navbar-brand text-white">
+        <!-- imagen y contenido de encabezado  -->
+          <i class="fs-2 bi-yelp"></i><span class="fs-2">Stock&Store</span>
+      </a>
+
+      <!-- boton de arriba -->
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar" aria-label="Toggle navigation" style="border-color: aliceblue;">
+        <span class="bi-list fs-3"></span>
+      </button>
+  
+      <!-- recipiente del costado -->
+      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel" style="background-color: mediumslateblue;">
+        <div class="offcanvas-header">
+          <!-- titulo de recipiente del costado -->
+          <h5 class="offcanvas-title fs-2" id="offcanvasNavbarLabel" style="color:white;"><i class="fs-2 bi-yelp"></i>Stock&Store</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="letra-menu">
+              <a href="{% static 'bodega/index.html' %}" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
+            </li>
+            <li>
+              <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                Iniciar Sesión / Registrarse
+              </a>
+            </li>
+            <li class="nav-item">
+                <a class="letra-menu" href="{% static 'bodega/nosotros.html' %}">Nosotros</a>
+            </li>
+            <li class="nav-item">
+              <a class="letra-menu" href="{% static 'bodega/contactanos.html' %}">Contáctanos</a>
+            </li>
+          </ul>
+          <form class="d-flex mt-3" role="search">
+            <input class="form-control me-2" type="search" placeholder="Búsqueda" aria-label="Search">
+            <button class="boton" type="submit">Buscar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Modal, especie de ventana flotante -->
+  <form action="{% static 'bodega/inicio.html' %}">
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+          <form action="{% static 'bodega/inventario.html' %}"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
+            <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
+              <div class="mb-3">
+                <label for="correo" class="form-label">Correo Electrónico</label>
+                <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
+                <label for="correo" class="warningReq">Campo obligatorio.</label>
+                <label for="correo" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
+                <label id="emailHelp" class="form-text">Guardamos tus datos con los más altos estándares de Seguridad.</label>
+              </div>
+              <div class="mb-3">
+                <label for="pass" class="form-label">Contraseña</label>
+                <input type="password" class="form-control" id="pass">
+                <label for="pass" class="warningReq">Campo obligatorio.</label>
+              </div>
+              <!-- boton de check a recordar -->
+              <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                <label class="form-check-label" for="exampleCheck1">Recordarme</label>
+              </div>
+              <div class="mb-3 text-center">
+                  ¿Aún no tienes una cuenta? <a href="{% static 'bodega/registrarse.html' %}" class="link">Registrate Aquí</a> <br>
+                  <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+              </div>
+            </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="submit" onclick="return checkForm()" class="btn btn-primary">Iniciar Sesión</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </form>
+
+
+  <div class="container">
+    <div class="content">
+        <br><br><br><br>
+        <h5 class="offcanvas-title fs-2" id="offcanvasNavbarLabel" style="color:rgb(2, 1, 1);">Stock & Store</h5>
+        <br>
+        <label for="validationTooltip01" class="form-label">Regístrate con nosotros</label>
+        <br>
+        <br>
+     
+        <!--FORMULARIO-->
+
+        <form class="row g-3 needs-validation" action="{% static 'bodega/index.html' %}" method="POST" id="form">
+          <div class="col-md-4 position-relative">
+            <label for="name" class="form-label">Nombre (*)</label>
+            <input type="text" class="form-control" id="name" value="" required>
+            <label for="name" class="warningReq">Campo obligatorio.</label>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="lName" class="form-label">Apellido (*)</label>
+            <input type="text" class="form-control" id="lName" value="" required>
+            <label for="lName" class="warningReq">Campo obligatorio.</label>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="email" class="form-label">Correo electronico (*)</label>
+            <input type="text" class="form-control" id="email" value="" required>
+            <label for="email" class="warningReq">Campo obligatorio.</label>
+            <label for="email" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
+          </div>
+         
+          <div class="col-md-4 position-relative">
+            <label for="city" class="form-label">Ciudad</label>
+            <input type="text" class="form-control" id="city">
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="sexo" class="form-label">Sexo (*)</label>
+            <select class="form-select" id="sexo" required>
+              <option selected disabled value="">Elegir opcion</option>
+              <option>Masculino</option>
+              <option>Femenino</option>
+              <option>No binario</option>
+              <option>Prefiero no decirlo</option>
+            </select>
+            <label for="sexo" class="warningReq">Campo obligatorio.</label>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="phone" class="form-label">Número de contacto (*)</label>
+            <input type="text" class="form-control" id="phone" required>
+            <label for="phone" class="warningReq">Campo obligatorio.</label>
+            <label for="phone" class="warningReq" id="msgPhone">El formato de teléfono es +XXXXXXXXXXX (Código de area + 8 dígitos)</label>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="fNac" class="form-label">Fecha de nacimiento (*)</label>
+            <input type="text" class="form-control" id="fNac" required>
+            <label for="fNac" class="warningReq">Campo obligatorio.</label>
+            <label for="fNac" class="warningReq" id="msgDate">La fecha no cumple con el formato solicitado.</label>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="nickName" class="form-label">Usuario (*)</label>
+            <input type="text" class="form-control" id="nickName" required>
+            <label for="nickName" class="warningReq">Campo obligatorio.</label>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="passwrd" class="form-label">Contraseña (*)</label>
+            <input type="password" class="form-control" id="passwrd" required>
+            <label for="passwrd" class="warningReq">Campo obligatorio.</label>
+            <label for="passwrd" class="warningReq" id="msgPass">La contraseña que has escrito no cumple los requisitos de la directiva de contraseñas. Prueba con otra que sea más larga o más compleja.</label>
+            <label for="passwrd" class="correct" id="msgPassOk">La contraseña elegida es segura.</label>
+          </div>
+          <div class="col-12">
+            <button class="btn btn-primary" type="submit" onclick="return checkForm()" id="submitBtn" >Crear cuenta</button>
+          </div>
+        </form>
+      </div>
+  </div>
+
+  <!--Modal-->
+  <div class="modal fade" id="formEnviado">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <div class="mb-3">
+            <p>¡Usuario creado con éxito!</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!---Fin modal-->
+
+  <script src="{% static 'bodega/js/bootstrap.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="{% static 'bodega/script.js' %}"></script>
+  
+</body>
+</html>
