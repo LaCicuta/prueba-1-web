@@ -72,9 +72,11 @@ const cerrarSesion = document.getElementById('cerrarSesion');
 if(cerrarSesion){
     cerrarSesion.addEventListener('click', function(e){
         e.preventDefault();
-        const confirmar = window.confirm('¿Desea cerrar sesión?');
+        const confirmar = window.confirm('¿Cerrar sesión?');
         if (confirmar){
-            location.href="./index.html";
+            location.href=cerrarSesion.href;
         }
     });
 }
+
+

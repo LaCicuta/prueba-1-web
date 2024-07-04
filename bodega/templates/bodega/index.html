@@ -15,7 +15,7 @@
   <!-- linea de arriba -->
   <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid" style="background-color: indigo;">
-      <a href="index.html" class="navbar-brand text-white">
+      <a href="{% url 'index' %}" class="navbar-brand text-white">
         <!-- imagen y contenido de encabezado  -->
           <i class="fs-2 bi-yelp"></i><span class="fs-2">Stock&Store</span>
       </a>
@@ -35,7 +35,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="letra-menu">
-              <a href="index.html" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
+              <a href="{% url 'index' %}" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
             </li>
             <li>
               <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -43,10 +43,10 @@
               </a>
             </li>
             <li class="nav-item">
-                <a class="letra-menu" href="nosotros.html">Nosotros</a>
+                <a class="letra-menu" href="{% url 'nosotros' %}">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="letra-menu" href="contactanos.html">Contáctanos</a>
+              <a class="letra-menu" href="{% url 'contactanos' %}">Contáctanos</a>
             </li>
           </ul>
           <form class="d-flex mt-3" role="search">
@@ -58,7 +58,7 @@
     </div>
   </nav>
   <!-- Modal, especie de ventana flotante -->
-  <form action="./inicio.html">
+  <form action="{% url 'inicio' %}">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -67,7 +67,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-          <form action="inventario.html"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
+          <form action="{% url 'inventario' %}"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
             <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
               <div class="mb-3">
                 <label for="correo" class="form-label">Correo Electrónico</label>
@@ -87,7 +87,7 @@
                 <label class="form-check-label" for="exampleCheck1">Recordarme</label>
               </div>
               <div class="mb-3 text-center">
-                  ¿Aún no tienes una cuenta? <a href="./registrarse.html" class="link">Registrate Aquí</a> <br>
+                  ¿Aún no tienes una cuenta? <a href=".{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
                   <a href="#" class="link">¿Olvidaste tu contraseña?</a>
               </div>
             </form>

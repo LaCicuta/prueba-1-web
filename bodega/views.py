@@ -1,4 +1,6 @@
 from django.shortcuts import render
+from .models import Pais, Ciudad, Sexo, Rubro, Empresa, Productos, Usuario, CodePais
+
 
 # Create your views here.
 
@@ -11,7 +13,11 @@ def nosotros(request):
     return render(request, 'bodega/nosotros.html', context)
 
 def registrarse(request):
-    context = {}
+    ciudades = Ciudad.objects.all()
+    paises = Pais.objects.all()
+    codeFonoPaises = CodePais.objects.all()
+    sexos = Sexo.objects.all()
+    context = {'ciudades':ciudades, 'paises':paises, 'sexos':sexos,'codeFonoPaises':codeFonoPaises}
     return render(request, 'bodega/registrarse.html', context)
 
 def contactanos(request):
@@ -25,3 +31,4 @@ def inicio(request):
 def inventario(request):
     context = {}
     return render(request, 'bodega/inventario.html', context)
+

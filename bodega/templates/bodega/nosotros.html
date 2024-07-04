@@ -14,7 +14,7 @@
     <!-- linea de arriba -->
   <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid" style="background-color: indigo;">
-      <a href="{% static 'bodega/index.html' %}" class="navbar-brand text-white">
+      <a href="{% url 'index' %}" class="navbar-brand text-white">
         <!-- imagen y contenido de encabezado  -->
           <i class="fs-2 bi-yelp"></i><span class="fs-2">Stock&Store</span>
       </a>
@@ -34,7 +34,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="letra-menu">
-              <a href="{% static 'bodega/index.html' %}" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
+              <a href="{% url 'index' %}" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
             </li>
             <li>
               <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -42,10 +42,10 @@
               </a>
             </li>
             <li class="nav-item">
-                <a class="letra-menu" href="{% static 'bodega/nosotros.html' %}">Nosotros</a>
+                <a class="letra-menu" href="{% url 'nosotros' %}">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="letra-menu" href="{% static 'bodega/contactanos.html' %}">Contáctanos</a>
+              <a class="letra-menu" href="{% url 'contactanos' %}">Contáctanos</a>
             </li>
           </ul>
           <form class="d-flex mt-3" role="search">
@@ -57,7 +57,7 @@
     </div>
   </nav>
   <!-- Modal, especie de ventana flotante -->
-  <form action="{% static 'bodega/inicio.html' %}">
+  <form action="{% url 'inicio' %}">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -66,7 +66,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-          <form action="{% static 'bodega/inventario.html' %}"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
+          <form action="{% url 'inventario' %}"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
             <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
               <div class="mb-3">
                 <label for="correo" class="form-label">Correo Electrónico</label>
@@ -86,7 +86,7 @@
                 <label class="form-check-label" for="exampleCheck1">Recordarme</label>
               </div>
               <div class="mb-3 text-center">
-                  ¿Aún no tienes una cuenta? <a href="{% static 'bodega/registrarse.html' %}" class="link">Registrate Aquí</a> <br>
+                  ¿Aún no tienes una cuenta? <a href="{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
                   <a href="#" class="link">¿Olvidaste tu contraseña?</a>
               </div>
             </form>
@@ -135,7 +135,7 @@
             En Somos PYME, nos especializamos en proporcionar soluciones integrales de inventariado que ayudan a las pequeñas y medianas empresas a optimizar sus operaciones y maximizar su rentabilidad. Nuestro equipo de expertos está dedicado a brindar un servicio personalizado y de alta calidad que se adapta a las necesidades únicas de cada cliente.</p>
             <br>
             <br>
-            <a href="{% static 'bodega/contactanos.html' %}" style="text-decoration: none; color:black; border: 1px black solid; padding: 10px; margin-bottom: 5px;" class="fs-2 rounded-pill boton-card"><i class="bi-telephone-outbound-fill"></i> Contactanos</a>
+            <a href="{% url 'contactanos' %}" style="text-decoration: none; color:black; border: 1px black solid; padding: 10px; margin-bottom: 5px;" class="fs-2 rounded-pill boton-card"><i class="bi-telephone-outbound-fill"></i> Contactanos</a>
 
     </div>
 </div>

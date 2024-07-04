@@ -21,7 +21,7 @@
       <br>
       <ul class="nav nav-pills flex-column mb-sm-auto align-self-begin align-items-sm-start" id="menu">
         <li class="nav-item">
-          <a href="{% static 'bodega/inicio.html' %}" class="nav-link align-middle px-0 text-white" >
+          <a href="{% url 'inicio' %}" class="nav-link align-middle px-0 text-white" >
             <i class="fs-2 bi-house"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inicio</span>
           </a> 
         </li>
@@ -40,7 +40,7 @@
           <a class="dropdown-item" href="#">Perfil</a>
           <a class="dropdown-item" href="#">Ajustes de cuenta</a>
           <hr>
-          <a class="dropdown-item" href="" id="cerrarSesion">Cerrar Sesion</a>
+          <a class="dropdown-item" href="{% url 'index' %}" id="cerrarSesion">Cerrar Sesion</a>
         </div>
       </div>
     </div>

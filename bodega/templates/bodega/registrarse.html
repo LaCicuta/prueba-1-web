@@ -14,7 +14,7 @@
     <!-- linea de arriba -->
   <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid" style="background-color: indigo;">
-      <a href="{% static 'bodega/index.html' %}" class="navbar-brand text-white">
+      <a href="{% url 'index' %}" class="navbar-brand text-white">
         <!-- imagen y contenido de encabezado  -->
           <i class="fs-2 bi-yelp"></i><span class="fs-2">Stock&Store</span>
       </a>
@@ -34,7 +34,7 @@
         <div class="offcanvas-body">
           <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
             <li class="letra-menu">
-              <a href="{% static 'bodega/index.html' %}" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
+              <a href="{% url 'index' %}" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
             </li>
             <li>
               <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
@@ -42,10 +42,10 @@
               </a>
             </li>
             <li class="nav-item">
-                <a class="letra-menu" href="{% static 'bodega/nosotros.html' %}">Nosotros</a>
+                <a class="letra-menu" href="{% url 'nosotros' %}">Nosotros</a>
             </li>
             <li class="nav-item">
-              <a class="letra-menu" href="{% static 'bodega/contactanos.html' %}">Contáctanos</a>
+              <a class="letra-menu" href="{% url 'contactanos' %}">Contáctanos</a>
             </li>
           </ul>
           <form class="d-flex mt-3" role="search">
@@ -58,7 +58,7 @@
   </nav>
 
   <!-- Modal, especie de ventana flotante -->
-  <form action="{% static 'bodega/inicio.html' %}">
+  <form action="{% url 'inicio' %}">
     <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog">
         <div class="modal-content">
@@ -67,7 +67,7 @@
             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
           </div>
           <div class="modal-body">
-          <form action="{% static 'bodega/inventario.html' %}"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
+          <form action="{% url 'inventario' %}"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
             <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
               <div class="mb-3">
                 <label for="correo" class="form-label">Correo Electrónico</label>
@@ -87,7 +87,7 @@
                 <label class="form-check-label" for="exampleCheck1">Recordarme</label>
               </div>
               <div class="mb-3 text-center">
-                  ¿Aún no tienes una cuenta? <a href="{% static 'bodega/registrarse.html' %}" class="link">Registrate Aquí</a> <br>
+                  ¿Aún no tienes una cuenta? <a href="{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
                   <a href="#" class="link">¿Olvidaste tu contraseña?</a>
               </div>
             </form>
@@ -113,7 +113,7 @@
      
         <!--FORMULARIO-->
 
-        <form class="row g-3 needs-validation" action="{% static 'bodega/index.html' %}" method="POST" id="form">
+        <form class="row g-3 needs-validation" action="{% url 'index' %}" method="POST" id="form">
           <div class="col-md-4 position-relative">
             <label for="name" class="form-label">Nombre (*)</label>
             <input type="text" class="form-control" id="name" value="" required>
@@ -130,19 +130,33 @@
             <label for="email" class="warningReq">Campo obligatorio.</label>
             <label for="email" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
           </div>
-         
           <div class="col-md-4 position-relative">
-            <label for="city" class="form-label">Ciudad</label>
-            <input type="text" class="form-control" id="city">
+            <label for="pais" class="form-label">Pais (*)</label>
+            <select class="form-select" id="pais" required>
+              <option selected disabled value="">Elegir opcion</option>
+              {% for pais in paises %} 
+                <option value="{{ pais.idPais }}">{{ pais.nombrePais }}</option>
+              {% endfor %} 
+            </select>
+            <label for="sexo" class="warningReq">Campo obligatorio.</label>
+          </div>
+          <div class="col-md-4 position-relative">
+            <label for="ciudad" class="form-label">Ciudad (*)</label>
+            <select class="form-select" id="ciudad" required>
+              <option selected disabled value="">Elegir opcion</option>
+              {% for ciudad in ciudades %} 
+                <option value="{{ ciudad.idCiudad }}">{{ ciudad.nombreCiudad }}</option>
+              {% endfor %} 
+            </select>
+            <label for="sexo" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="sexo" class="form-label">Sexo (*)</label>
             <select class="form-select" id="sexo" required>
               <option selected disabled value="">Elegir opcion</option>
-              <option>Masculino</option>
-              <option>Femenino</option>
-              <option>No binario</option>
-              <option>Prefiero no decirlo</option>
+              {% for sexo in sexos %} 
+                <option value="{{ sexo.idSexo }}">{{ sexo.detalleSexo }}</option>
+              {% endfor %} 
             </select>
             <label for="sexo" class="warningReq">Campo obligatorio.</label>
           </div>
