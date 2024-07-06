@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from .models import Pais, Ciudad, Sexo, Rubro, Empresa, Productos, Usuario, CodePais
 from django.contrib.auth.decorators import login_required
 from .forms import PaisForm, CiudadForm, SexoForm, RubroForm
-
+from django.contrib import messages
 
 # Create your views here.
 
@@ -107,9 +107,26 @@ def modificar_pais(request, id):
 
 @login_required
 def eliminar_pais(request, id):
-    pais = Pais.objects.get(id=id)
-    pais.delete()
-    return redirect('inicioAdmin')
+    msj=[]
+    error=[]
+    pais = Pais.objects.all()
+    try:
+        pais = Pais.objects.get(idPais=id)
+        context={}
+        if pais:
+            pais.delete()
+            messages.success(request, 'Pais eliminado correctamente')
+            msj.append('Pais eliminado correctamente')
+            context = {'pais':pais, 'msj':msj, 'error':error}
+            return redirect('inicioAdmin')
+    except:
+        print("Error. Pais no existe.")
+        messages.error(request, 'Error, id no existe')
+        pais=Pais.objects.all()
+        msj="Error, id no existe"
+        context={'msj':msj, 'pais':pais}
+        error.append('No existe el pais')
+        return redirect('inicioAdmin')
 
 @login_required
 def modificar_ciudad(request, id):
@@ -125,9 +142,26 @@ def modificar_ciudad(request, id):
 
 @login_required
 def eliminar_ciudad(request, id):
-    ciudad = Ciudad.objects.get(id=id)
-    ciudad.delete()
-    return redirect('inicioAdmin')
+    msj=[]
+    error=[]
+    ciudad = Ciudad.objects.all()
+    try:
+        ciudad = Ciudad.objects.get(idCiudad=id)
+        context={}
+        if ciudad:
+            ciudad.delete()
+            messages.success(request, 'Ciudad eliminado correctamente')
+            msj.append('Ciudad eliminada correctamente')
+            context = {'ciudad':ciudad, 'msj':msj, 'error':error}
+            return redirect('inicioAdmin')
+    except:
+        print("Error. Ciudad no existe.")
+        ciudad=Ciudad.objects.all()
+        msj="Error, id no existe"
+        messages.error(request, 'Error, id no existe')
+        context={'msj':msj, 'ciudad':ciudad}
+        error.append('No existe la ciudad')
+        return redirect('inicioAdmin')
 
 @login_required
 def modificar_sexo(request, id):
@@ -143,9 +177,26 @@ def modificar_sexo(request, id):
 
 @login_required
 def eliminar_sexo(request, id):
-    sexo = Sexo.objects.get(id=id)
-    sexo.delete()
-    return redirect('inicioAdmin')
+    msj=[]
+    error=[]
+    sexo = Sexo.objects.all()
+    try:
+        sexo = Sexo.objects.get(idSexo=id)
+        context={}
+        if sexo:
+            sexo.delete()
+            msj.append('Sexo eliminado correctamente')
+            messages.success(request, 'Sexo eliminado correctamente')
+            context = {'sexo':sexo, 'msj':msj, 'error':error}
+            return redirect('inicioAdmin')
+    except:
+        print("Error. Sexo no existe.")
+        sexo=Sexo.objects.all()
+        msj="Error, id no existe"
+        messages.error(request, 'Error, id no existe')
+        context={'msj':msj, 'sexo':sexo}
+        error.append('No existe el sexo')
+        return redirect('inicioAdmin')
 
 @login_required
 def modificar_rubro(request, id):
@@ -161,6 +212,23 @@ def modificar_rubro(request, id):
 
 @login_required
 def eliminar_rubro(request, id):
-    rubro = Rubro.objects.get(id=id)
-    rubro.delete()
-    return redirect('inicioAdmin')
+    msj=[]
+    error=[]
+    rubro = Rubro.objects.all()
+    try:
+        rubro = Rubro.objects.get(id=id)
+        context={}
+        if rubro:
+            rubro.delete()
+            messages.success(request, 'Rubro eliminado correctamente')
+            msj.append('Rubro eliminado correctamente')
+            context = {'rubro':rubro, 'msj':msj, 'error':error}
+            return redirect('inicioAdmin')
+    except:
+        print("Error. Rubro no existe.")
+        messages.error(request, 'Error, id no existe')
+        rubro=Rubro.objects.all()
+        msj="Error, id no existe"
+        context={'msj':msj, 'rubro':rubro}
+        error.append('No existe el rubro')
+        return redirect('inicioAdmin')
