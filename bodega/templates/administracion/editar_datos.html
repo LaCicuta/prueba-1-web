@@ -36,64 +36,16 @@
             </div>
         </div>
   </nav>
+    <div class="container mt-3" >
+        <div class="content" style="margin-top: 150px;">
+            <form action="" method="post">
+                {% csrf_token %}
+                {{form.as_table}}
+                <input type="submit" name="opcion" value="Actualizar">
+            </form>
+        </div>
+    </div>
 
-  <div class="container mt-3" >
-    <div class="content" style="margin-top: 150px;">
-
-        <table class="table table-striped">
-            <th>Pais</th>
-            <th>Eliminar</th>
-            <th>Modificar</th>
-            {% for p in pais %}
-            <tr>
-                <td>{{p.nombrePais}}</td>
-                <td><a href="{% url 'eliminar_pais' id=p.idPais %}" class="btn btn-danger">Eliminar</a></td>
-                <td><a href="{% url 'modificar_pais' id=p.idPais %}" class="btn btn-primary">Modificar</a></td>
-            </tr>
-            {% endfor %}
-        </table><br><br>
-
-        <table class="table table-striped">
-            <th>Ciudad</th>
-            <th>Eliminar</th>
-            <th>Modificar</th>
-            {% for c in ciudad %}
-            <tr>
-                <td>{{c.nombreCiudad}}</td>
-                <td><a href="{% url 'eliminar_ciudad' id=c.idCiudad %}" class="btn btn-danger">Eliminar</a></td>
-                <td><a href="{% url 'modificar_ciudad' id=c.idCiudad %}" class="btn btn-primary">Modificar</a></td>
-            </tr>
-            {% endfor %}
-        </table><br><br>
-
-        <table class="table table-striped">
-            <th>Sexo</th>
-            <th>Eliminar</th>
-            <th>Modificar</th>
-            {% for s in sexo %}
-            <tr>
-                <td>{{s.detalleSexo}}</td>
-                <td><a href="{% url 'eliminar_sexo' id=s.idSexo %}" class="btn btn-danger">Eliminar</a></td>
-                <td><a href="{% url 'modificar_sexo' id=s.idSexo %}" class="btn btn-primary">Modificar</a></td>
-            </tr>
-            {% endfor %}
-        </table><br><br>
-
-        <table class="table table-striped">
-            <th>Rubro</th>
-            <th>Eliminar</th>
-            <th>Modificar</th>
-            {% for r in rubro %}
-            <tr>
-                <td>{{r.descRubro}}</td>
-                <td><a href="{% url 'eliminar_rubro' id=r.idRubro %}" class="btn btn-danger">Eliminar</a></td>
-                <td><a href="{% url 'modificar_rubro' id=r.idRubro %}" class="btn btn-primary">Modificar</a></td>
-            </tr>
-            {% endfor %}
-        </table>
-
-      </div>
-  </div>
 
     {% if messages %}
         {% for message in messages %}
@@ -102,6 +54,8 @@
         </script>
         {% endfor %}
     {% endif %}
+
+    <a href="{% url 'inicioAdmin' %}"></a>
 
 
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

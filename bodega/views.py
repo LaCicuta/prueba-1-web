@@ -93,17 +93,32 @@ def inicioAdmin(request):
     context={'pais':pais, 'ciudad':ciudad, 'sexo':sexo, 'rubro':rubro}
     return render(request, 'administracion/admin-inicio.html', context) 
 
-@login_required
 def modificar_pais(request, id):
-    pais = Pais.objects.get(id=id)
-    if request.method == 'POST':
-        form = PaisForm(request.POST, instance=pais)
-        if form.is_valid():
-            form.save()
-            return redirect('inicioAdmin')
-    else:
-        form = PaisForm(instance=pais)
-    return render(request, 'administracion/modificar_pais.html', {'form': form})
+    try:
+        pais = Pais.objects.get(idPais=id)
+        context={}
+        if pais:
+            print("Edit encontró el Pais...")
+            if request.method == "POST":
+                print("Edit, es un POST")
+                form = PaisForm(request.POST, instance=pais)
+                form.save()
+                print("Bien, datos actualizados...")
+                mensaje = "País actualizado"
+                context = {'pais': pais, 'form': form, 'mensaje': mensaje}
+                return redirect('inicioAdmin')
+            else:
+                print("Edit, NO es un POST")
+                form = PaisForm(instance=pais)
+                context = {'pais': pais, 'form': form}
+                return render(request, 'administracion/editar_datos.html', context)
+    except:
+        print("Error, id no existe...")
+        pais = Pais.objects.all()
+        mensaje = "Error, id no existe"
+        context = {'mensaje': mensaje, 'pais': pais}
+        return redirect('inicioAdmin')
+
 
 @login_required
 def eliminar_pais(request, id):
@@ -128,17 +143,33 @@ def eliminar_pais(request, id):
         error.append('No existe el pais')
         return redirect('inicioAdmin')
 
-@login_required
 def modificar_ciudad(request, id):
-    ciudad = Ciudad.objects.get(id=id)
-    if request.method == 'POST':
-        form = CiudadForm(request.POST, instance=ciudad)
-        if form.is_valid():
-            form.save()
-            return redirect('inicioAdmin')
-    else:
-        form = CiudadForm(instance=ciudad)
-    return render(request, 'administracion/modificar_ciudad.html', {'form': form})
+    try:
+        ciudad = Ciudad.objects.get(idCiudad=id)
+        context={}
+        if ciudad:
+            print("Edit encontró la Ciudad...")
+            if request.method == "POST":
+                print("Edit, es un POST")
+                form = CiudadForm(request.POST, instance=ciudad)
+                form.save()
+                print("Bien, datos actualizados...")
+                mensaje = "Ciudad actualizada"
+                print(mensaje)
+                context = {'ciudad': ciudad, 'form': form, 'mensaje': mensaje}
+                return redirect('inicioAdmin')
+            else:
+                print("Edit, NO es un POST")
+                form = CiudadForm(instance=ciudad)
+                context = {'ciudad': ciudad, 'form': form}
+                return render(request, 'administracion/editar_datos.html', context)
+    except:
+        print("Error, id no existe...")
+        ciudad = Ciudad.objects.all()
+        mensaje = "Error, id no existe"
+        context = {'mensaje': mensaje, 'ciudad': ciudad}
+        return render(request, 'administracion/editar_datos.html', context)
+
 
 @login_required
 def eliminar_ciudad(request, id):
@@ -150,30 +181,43 @@ def eliminar_ciudad(request, id):
         context={}
         if ciudad:
             ciudad.delete()
-            messages.success(request, 'Ciudad eliminado correctamente')
             msj.append('Ciudad eliminada correctamente')
             context = {'ciudad':ciudad, 'msj':msj, 'error':error}
-            return redirect('inicioAdmin')
+            return render(request, 'inicioAdmin', context)
     except:
         print("Error. Ciudad no existe.")
         ciudad=Ciudad.objects.all()
         msj="Error, id no existe"
-        messages.error(request, 'Error, id no existe')
         context={'msj':msj, 'ciudad':ciudad}
         error.append('No existe la ciudad')
         return redirect('inicioAdmin')
 
-@login_required
 def modificar_sexo(request, id):
-    sexo = Sexo.objects.get(id=id)
-    if request.method == 'POST':
-        form = SexoForm(request.POST, instance=sexo)
-        if form.is_valid():
-            form.save()
-            return redirect('inicioAdmin')
-    else:
-        form = SexoForm(instance=sexo)
-    return render(request, 'administracion/modificar_sexo.html', {'form': form})
+    try:
+        sexo = Sexo.objects.get(idSexo=id)
+        context={}
+        if sexo:
+            print("Edit encontró el Sexo...")
+            if request.method == "POST":
+                print("Edit, es un POST")
+                form = SexoForm(request.POST, instance=sexo)
+                form.save()
+                print("Bien, datos actualizados...")
+                mensaje = "Género actualizado"
+                context = {'sexo': sexo, 'form': form, 'mensaje': mensaje}
+                return redirect('inicioAdmin')
+            else:
+                print("Edit, NO es un POST")
+                form = SexoForm(instance=sexo)
+                context = {'sexo': sexo, 'form': form}
+                return render(request, 'administracion/editar_datos.html', context)
+    except:
+        print("Error, id no existe...")
+        sexo = Sexo.objects.all()
+        mensaje = "Error, id no existe"
+        context = {'mensaje': mensaje, 'sexo': sexo}
+        return redirect('inicioAdmin')
+
 
 @login_required
 def eliminar_sexo(request, id):
@@ -186,29 +230,43 @@ def eliminar_sexo(request, id):
         if sexo:
             sexo.delete()
             msj.append('Sexo eliminado correctamente')
-            messages.success(request, 'Sexo eliminado correctamente')
             context = {'sexo':sexo, 'msj':msj, 'error':error}
-            return redirect('inicioAdmin')
+            return render(request, 'inicioAdmin', context)
     except:
         print("Error. Sexo no existe.")
         sexo=Sexo.objects.all()
         msj="Error, id no existe"
-        messages.error(request, 'Error, id no existe')
         context={'msj':msj, 'sexo':sexo}
         error.append('No existe el sexo')
         return redirect('inicioAdmin')
 
 @login_required
 def modificar_rubro(request, id):
-    rubro = Rubro.objects.get(id=id)
-    if request.method == 'POST':
-        form = RubroForm(request.POST, instance=rubro)
-        if form.is_valid():
-            form.save()
-            return redirect('inicioAdmin')
-    else:
-        form = RubroForm(instance=rubro)
-    return render(request, 'administracion/modificar_rubro.html', {'form': form})
+    try:
+        rubro = Rubro.objects.get(idRubro=id)
+        context={}
+        if rubro:
+            print("Edit encontró el Rubro...")
+            if request.method == "POST":
+                print("Edit, es un POST")
+                form = RubroForm(request.POST, instance=rubro)
+                if form.is_valid():
+                    form.save()
+                    print("Bien, datos actualizados...")
+                    mensaje = "Rubro actualizado"
+                    context = {'rubro': rubro, 'form': form, 'mensaje': mensaje}
+                    return redirect('inicioAdmin')
+            else:
+                print("Edit, NO es un POST")
+                form = RubroForm(instance=rubro)
+                context = {'rubro': rubro, 'form': form}
+                return render(request, 'administracion/editar_datos.html', context)
+    except:
+        print("Error, id no existe...")
+        rubro = Rubro.objects.all()
+        mensaje = "Error, id no existe"
+        context = {'mensaje': mensaje, 'rubro': rubro}
+        return redirect('inicioAdmin')
 
 @login_required
 def eliminar_rubro(request, id):
@@ -216,19 +274,18 @@ def eliminar_rubro(request, id):
     error=[]
     rubro = Rubro.objects.all()
     try:
-        rubro = Rubro.objects.get(id=id)
+        rubro = Rubro.objects.get(idRubro=id)
         context={}
         if rubro:
             rubro.delete()
-            messages.success(request, 'Rubro eliminado correctamente')
             msj.append('Rubro eliminado correctamente')
             context = {'rubro':rubro, 'msj':msj, 'error':error}
-            return redirect('inicioAdmin')
+            return render(request, 'inicioAdmin', context)
     except:
         print("Error. Rubro no existe.")
-        messages.error(request, 'Error, id no existe')
         rubro=Rubro.objects.all()
         msj="Error, id no existe"
         context={'msj':msj, 'rubro':rubro}
         error.append('No existe el rubro')
         return redirect('inicioAdmin')
+
