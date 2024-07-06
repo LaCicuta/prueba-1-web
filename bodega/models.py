@@ -67,20 +67,22 @@ class CodePais(models.Model):
         return self.codigoPhonePais
     
 class Usuario(models.Model):
-    idUsuario = models.IntegerField(db_column='idUsuario',primary_key=True)
+    idUsuario = models.CharField(max_length=20, db_column='idUsuario',primary_key=True)
     userMote = models.CharField(max_length=50, blank=False, null=False)
     userName = models.CharField(max_length=50, blank=False, null=False)
     userAp = models.CharField(max_length=50, blank=False, null=False)
     userMail = models.CharField(max_length=50, blank=False, null=False)
+    idPais = models.ForeignKey('Pais', on_delete=models.CASCADE, db_column='idPais')
     idCiudad = models.ForeignKey('Ciudad', on_delete=models.CASCADE, db_column='idCiudad')
     idSexo = models.ForeignKey('Sexo', on_delete=models.CASCADE, db_column='idSexo')
     idCodPais = models.ForeignKey('CodePais', on_delete=models.CASCADE, db_column='idCodPais')
     phone = models.CharField(max_length=10, blank=False, null=False)
-    userNacimiento = models.DateField(blank=False, null=False)
+    userNacimiento = models.CharField(max_length=100, blank=False, null=False)
     userWebPage = models.CharField(max_length=100)
     userDireccion = models.CharField(max_length=100)
     rolEmpresa = models.ForeignKey('Empresa', on_delete=models.CASCADE, db_column='idEmpresa')
     passwordUsuario = models.CharField(max_length=50, blank=False, null=False)
+    activo = models.IntegerField()
 
     def __str__(self):
         return self.userName

@@ -1,6 +1,6 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
-{% load static %}
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,7 +11,8 @@
   <link rel="stylesheet" href="{% static 'bodega/style.css' %}">
 </head>
 <body>
-    <!-- linea de arriba -->
+
+  <!-- linea de arriba -->
   <nav class="navbar bg-body-tertiary fixed-top">
     <div class="container-fluid" style="background-color: indigo;">
       <a href="{% url 'index' %}" class="navbar-brand text-white">
@@ -39,11 +40,6 @@
             <li>
               <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
                 Iniciar Sesión / Registrarse
-              </a>
-            </li>
-            <li>
-              <a class="letra-menu" href="{% url 'login' %}">
-                Administración
               </a>
             </li>
             <li class="nav-item">
@@ -91,7 +87,7 @@
                 <label class="form-check-label" for="exampleCheck1">Recordarme</label>
               </div>
               <div class="mb-3 text-center">
-                  ¿Aún no tienes una cuenta? <a href="{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
+                  ¿Aún no tienes una cuenta? <a href=".{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
                   <a href="#" class="link">¿Olvidaste tu contraseña?</a>
               </div>
             </form>
@@ -105,87 +101,21 @@
     </div>
   </form>
 
+
   <div class="container">
-    <div class="content">
+    <div class="content align-items-center">
         <br><br><br><br>
-        <br>
-        <img src="{% static 'bodega/img/operadora-telefonica.png' %}" class="img-fluid img-red" alt="imagenreferencial">
-        <br>
-        <div style="display: inline;">
-          <i class="fs-2 bi-yelp"></i><span class="offcanvas-title fs-1">Stock&Store - Contáctanos</span>
-        </div>
-        <br><br>
-        <label for="validationTooltip01" class="form-label">¡Contacta con Nosotros y Descubre Cómo Podemos Ayudarte!</label>
-        <br>
-        <label for="validationTooltip01" class="form-label">En somos PYME, estamos aquí para brindarte soluciones personalizadas que impulsen el éxito de tu negocio. Ya sea que estés buscando optimizar tus operaciones, mejorar la eficiencia o expandir tu alcance, nuestro equipo está listo para ayudarte a alcanzar tus objetivos.</label>
-        <br>
-        <br>
-     
-        <!--FORMULARIO-->
-
-        <form class="row g-3 needs-validation" action="{% url 'index' %}" method="POST" id="form" novalidate>
-          <div class="col-md-4 position-relative">
-            <label for="name" class="form-label">Nombre (*)</label>
-            <input type="text" class="form-control" id="name" value="" required>
-            <label for="name" class="warningReq">Campo obligatorio.</label>
-          </div>
-          <div class="col-md-4 position-relative">
-            <label for="lName" class="form-label">Apellido (*)</label>
-            <input type="text" class="form-control" id="lName" value="" required>
-            <label for="lName" class="warningReq">Campo obligatorio.</label>
-          </div>
-          <div class="col-md-4 position-relative">
-            <label for="email" class="form-label">Correo electronico (*)</label>
-            <input type="text" class="form-control" id="email" value="" required>
-            <label for="email" class="warningReq">Campo obligatorio.</label>
-            <label for="email" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
-          </div>
-         
-          <div class="col-md-4 position-relative">
-            <label for="city" class="form-label">Ciudad</label>
-            <input type="text" class="form-control" id="city" required>
-          </div>
-          <div class="col-md-4 position-relative">
-            <label for="sexo" class="form-label">Sexo (*)</label>
-            <select class="form-select" id="sexo" required>
-              <option selected disabled value="">Elegir opcion</option>
-              <option>Masculino</option>
-              <option>Femenino</option>
-              <option>No binario</option>
-              <option>Prefiero no decirlo</option>
-            </select>
-            <label for="sexo" class="warningReq">Campo obligatorio.</label>
-          </div>
-          <div class="col-md-4 position-relative">
-            <label for="phone" class="form-label">Numero de contacto</label>
-            <input type="text" class="form-control" id="phone" required>
-          </div>
-          <div class="col-12">
-            <button class="btn btn-primary" type="submit" onclick="return checkForm()" id="submitBtn" >Enviar para contactar</button>
-          </div>
-        </form>
-        <br>
-
-        <!--Modal-->
-        <div class="modal fade" id="formEnviado" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        <form method="post">
+              <div class="mb-3 text-center">
+                {% csrf_token %}
+                {{ form.as_p}}
+                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
               </div>
-              <div class="modal-body">
-                <div class="mb-3">
-                  <p>¡Los datos de contacto han sido enviados con éxito!</p>
-                  <p>Responderemos su solicitud en la brevedad.</p>
-                </div>
-              </div>
-              <div class="modal-footer">
-              </div>
-            </div>
-          </div>
-        </div>
-        <!---Fin modal-->
+              <!--<div class="mb-3 text-center">
+                  ¿Aún no tienes una cuenta? <a href=".{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
+                  <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+              </div>-->
+            </form>
 
     </div>
 </div>
@@ -193,5 +123,6 @@
   <script src="{% static 'bodega/js/bootstrap.min.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="{% static 'bodega/script.js' %}"></script>
+  
 </body>
 </html>
