@@ -58,11 +58,6 @@ class Productos(models.Model):
         return self.nombreProducto
 
 
-class CodePais(models.Model):
-    idCodPais = models.AutoField(db_column='idCodPais',primary_key=True)
-    idPais = models.ForeignKey('Pais', on_delete=models.CASCADE, db_column='idPais')
-    codigoPhonePais = models.CharField(max_length=6, blank=False, null=False)
-
     def __str__(self):
         return self.codigoPhonePais
     
@@ -75,7 +70,6 @@ class Usuario(models.Model):
     idPais = models.ForeignKey('Pais', on_delete=models.CASCADE, db_column='idPais')
     idCiudad = models.ForeignKey('Ciudad', on_delete=models.CASCADE, db_column='idCiudad')
     idSexo = models.ForeignKey('Sexo', on_delete=models.CASCADE, db_column='idSexo')
-    idCodPais = models.ForeignKey('CodePais', on_delete=models.CASCADE, db_column='idCodPais')
     phone = models.CharField(max_length=10, blank=False, null=False)
     userNacimiento = models.CharField(max_length=100, blank=False, null=False)
     userWebPage = models.CharField(max_length=100)

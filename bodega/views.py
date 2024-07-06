@@ -1,8 +1,8 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
-from .models import Pais, Ciudad, Sexo, Rubro, Empresa, Productos, Usuario, CodePais
+from .models import Pais, Ciudad, Sexo, Rubro, Empresa, Productos, Usuario
 from django.contrib.auth.decorators import login_required
-from .forms import PaisForm, CiudadForm, SexoForm, RubroForm
+from .forms import PaisForm, CiudadForm, SexoForm, RubroForm, UsuarioForm
 from django.contrib import messages
 
 # Create your views here.
@@ -36,7 +36,6 @@ def registrarse(request):
         objPais = Pais.objects.get(idPais = pais)
         objCiudad = Ciudad.objects.get(idCiudad = ciudad)
         objSexo = Sexo.objects.get(idSexo = sexo)
-        objCodePais = CodePais.objects.get(idPais = pais)
         objEmpresa = Empresa.objects.get(rolEmpresa = 1)
         obj = Usuario.objects.create(idUsuario=rut,
                                      userName=nombre,
@@ -45,7 +44,6 @@ def registrarse(request):
                                      idPais=objPais,
                                      idCiudad=objCiudad,
                                      idSexo=objSexo,
-                                     idCodPais = objCodePais,
                                      phone=phone,
                                      userNacimiento=fNac,
                                      userMote=nickName,
@@ -61,9 +59,8 @@ def registrarse(request):
     else:
         ciudades = Ciudad.objects.all()
         paises = Pais.objects.all()
-        codeFonoPaises = CodePais.objects.all()
         sexos = Sexo.objects.all()
-        context = {'ciudades': ciudades, 'paises': paises, 'sexos': sexos, 'codeFonoPaises': codeFonoPaises}
+        context = {'ciudades': ciudades, 'paises': paises, 'sexos': sexos,}
         return render(request, 'bodega/registrarse.html', context)
 
 
@@ -90,9 +87,30 @@ def inicioAdmin(request):
     ciudad = Ciudad.objects.all()
     sexo = Sexo.objects.all()
     rubro = Rubro.objects.all()
-    context={'pais':pais, 'ciudad':ciudad, 'sexo':sexo, 'rubro':rubro}
+    usuario = Usuario.objects.all()
+    context={'pais':pais, 'ciudad':ciudad, 'sexo':sexo, 'rubro':rubro, 'usuario':usuario}
     return render(request, 'administracion/admin-inicio.html', context) 
 
+@login_required
+def paisAdd(request):
+    print("estoy en controlador paisAdd...")
+    context = {}
+    
+    if request.method == "POST":
+        print("controlador es un post...")
+        form = PaisForm(request.POST)
+        if form.is_valid:
+            print("estoy en agregar, is_valid")
+            form.save()
+            form = PaisForm()
+            context = {'mensaje': "Ok, datos grabados...", 'form': form}
+            return redirect('inicioAdmin')
+    else:
+        form = PaisForm()
+        context = {'form': form}
+        return render(request, 'administracion/agregar_datos.html', context)
+
+@login_required    
 def modificar_pais(request, id):
     try:
         pais = Pais.objects.get(idPais=id)
@@ -138,11 +156,29 @@ def eliminar_pais(request, id):
         print("Error. Pais no existe.")
         messages.error(request, 'Error, id no existe')
         pais=Pais.objects.all()
-        msj="Error, id no existe"
-        context={'msj':msj, 'pais':pais}
         error.append('No existe el pais')
         return redirect('inicioAdmin')
 
+@login_required    
+def ciudadAdd(request):
+    print("estoy en controlador ciudadAdd...")
+    context = {}
+    
+    if request.method == "POST":
+        print("controlador es un post...")
+        form = CiudadForm(request.POST)
+        if form.is_valid:
+            print("estoy en agregar, is_valid")
+            form.save()
+            form = CiudadForm()
+            context = {'mensaje': "Ok, datos grabados...", 'form': form}
+            return redirect('inicioAdmin')
+    else:
+        form = CiudadForm()
+        context = {'form': form}
+        return render(request, 'administracion/agregar_datos.html', context)
+
+@login_required       
 def modificar_ciudad(request, id):
     try:
         ciudad = Ciudad.objects.get(idCiudad=id)
@@ -192,6 +228,26 @@ def eliminar_ciudad(request, id):
         error.append('No existe la ciudad')
         return redirect('inicioAdmin')
 
+@login_required    
+def sexoAdd(request):
+    print("estoy en controlador sexoAdd...")
+    context = {}
+    
+    if request.method == "POST":
+        print("controlador es un post...")
+        form = SexoForm(request.POST)
+        if form.is_valid:
+            print("estoy en agregar, is_valid")
+            form.save()
+            form = SexoForm()
+            context = {'mensaje': "Ok, datos grabados...", 'form': form}
+            return redirect('inicioAdmin')
+    else:
+        form = SexoForm()
+        context = {'form': form}
+        return render(request, 'administracion/agregar_datos.html', context)
+
+@login_required    
 def modificar_sexo(request, id):
     try:
         sexo = Sexo.objects.get(idSexo=id)
@@ -241,6 +297,24 @@ def eliminar_sexo(request, id):
         return redirect('inicioAdmin')
 
 @login_required
+def rubroAdd(request):
+    print("estoy en controlador agregar_rubro...")
+    context = {}
+    
+    if request.method == "POST":
+        print("controlador es un post...")
+        form = RubroForm(request.POST)
+        if form.is_valid():
+            print("estoy en agregar, is_valid")
+            form.save()
+            form = RubroForm()
+            context = {'mensaje': "Ok, datos grabados...", 'form': form}
+            return redirect('inicioAdmin')
+    else:
+        form = RubroForm()
+        context = {'form': form}
+        return render(request, 'administracion/agregar_datos.html', context)
+@login_required
 def modificar_rubro(request, id):
     try:
         rubro = Rubro.objects.get(idRubro=id)
@@ -287,5 +361,53 @@ def eliminar_rubro(request, id):
         msj="Error, id no existe"
         context={'msj':msj, 'rubro':rubro}
         error.append('No existe el rubro')
+        return redirect('inicioAdmin')
+
+@login_required    
+def modificar_usuario(request, id):
+    try:
+        usuario = Usuario.objects.get(idUsuario=id)
+        context={}
+        if usuario:
+            print("Edit encontró el Usuario...")
+            if request.method == "POST":
+                print("Edit, es un POST")
+                form = UsuarioForm(request.POST, instance=usuario)
+                form.save()
+                print("Bien, datos actualizados...")
+                mensaje = "Usuario actualizado"
+                context = {'usuario': usuario, 'form': form, 'mensaje': mensaje}
+                return redirect('inicioAdmin')
+            else:
+                print("Edit, NO es un POST")
+                form = UsuarioForm(instance=usuario)
+                context = {'usuario': usuario, 'form': form}
+                return render(request, 'administracion/editar_datos.html', context)
+    except:
+        print("Error, id no existe...")
+        usuario = Usuario.objects.all()
+        mensaje = "Error, id no existe"
+        context = {'mensaje': mensaje, 'usuario': usuario}
+        return redirect('inicioAdmin')  
+      
+@login_required
+def eliminar_usuario(request, id):
+    msj=[]
+    error=[]
+    usuario = Usuario.objects.all()
+    try:
+        usuario = Usuario.objects.get(idUsuario=id)
+        context={}
+        if usuario:
+            usuario.delete()
+            msj.append('Usuario eliminado correctamente')
+            context = {'usuario':usuario, 'msj':msj, 'error':error}
+            return render(request, 'inicioAdmin', context)
+    except:
+        print("Error. Usuario no existe.")
+        usuario=Usuario.objects.all()
+        msj="Error, id no existe"
+        context={'msj':msj, 'usuario':usuario}
+        error.append('No existe el usuario')
         return redirect('inicioAdmin')
 

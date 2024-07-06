@@ -44,6 +44,8 @@
             <th>Pais</th>
             <th>Eliminar</th>
             <th>Modificar</th>
+            <th><a href="{% url 'paisAdd' %}" class="btn btn-success">Agregar</a></th>
+            
             {% for p in pais %}
             <tr>
                 <td>{{p.nombrePais}}</td>
@@ -57,6 +59,7 @@
             <th>Ciudad</th>
             <th>Eliminar</th>
             <th>Modificar</th>
+            <th><a href="{% url 'ciudadAdd' %}" class="btn btn-success">Agregar</a></th>
             {% for c in ciudad %}
             <tr>
                 <td>{{c.nombreCiudad}}</td>
@@ -70,6 +73,7 @@
             <th>Sexo</th>
             <th>Eliminar</th>
             <th>Modificar</th>
+            <th><a href="{% url 'sexoAdd' %}" class="btn btn-success">Agregar</a></th>
             {% for s in sexo %}
             <tr>
                 <td>{{s.detalleSexo}}</td>
@@ -83,11 +87,31 @@
             <th>Rubro</th>
             <th>Eliminar</th>
             <th>Modificar</th>
+            <th><a href="{% url 'rubroAdd' %}" class="btn btn-success">Agregar</a></th>
             {% for r in rubro %}
             <tr>
                 <td>{{r.descRubro}}</td>
                 <td><a href="{% url 'eliminar_rubro' id=r.idRubro %}" class="btn btn-danger">Eliminar</a></td>
                 <td><a href="{% url 'modificar_rubro' id=r.idRubro %}" class="btn btn-primary">Modificar</a></td>
+            </tr>
+            {% endfor %}
+        </table>
+
+        <table class="table table-striped">
+            <th>Usuario</th>
+            <th>Rut</th>
+            <th>Nombre Completo</th>
+            <th>Correo</th>
+            <th>Eliminar</th>
+            <th>Modificar</th>
+            {% for u in usuario %}
+            <tr>
+                <td>{{u.userMote}}</td>
+                <td>{{u.idUsuario}}</td>
+                <td>{{u.userName}} {{u.userName}}</td>
+                <td>{{u.userMail}}</td>
+                <td><a href="{% url 'eliminar_usuario' id=u.idUsuario %}" class="btn btn-danger">Eliminar</a></td>
+                <td><a href="{% url 'modificar_usuario' id=u.idUsuario %}" class="btn btn-primary">Modificar</a></td>
             </tr>
             {% endfor %}
         </table>

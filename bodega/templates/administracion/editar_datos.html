@@ -36,12 +36,15 @@
             </div>
         </div>
   </nav>
-    <div class="container mt-3" >
-        <div class="content" style="margin-top: 150px;">
-            <form action="" method="post">
+  <div class="container">
+    <div class="content align-items-center" style="margin-top: 150px;">
+        <br><br><br><br>
+        <form method="post">
+              <div class="mb-3 text-center">
                 {% csrf_token %}
-                {{form.as_table}}
-                <input type="submit" name="opcion" value="Actualizar">
+                {{ form.as_p}}
+                <input type="submit" name="opcion" value="Actualizar" class="btn btn-primary">
+              </div>
             </form>
         </div>
     </div>
