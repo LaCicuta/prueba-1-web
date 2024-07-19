@@ -37,7 +37,7 @@
                 <a href="#" class="d-flex align-items-center text-decoration-none 
                 dropdown-toggle text-white" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <i class="bi-person-circle fs-2"></i>
-                    <span class="d-none d-sm-inline mx-1">Usuario</span>
+                    <span class="d-none d-sm-inline mx-1"> {{ usuario.userMote }} </span>
                 </a>
                 <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
                 <a class="dropdown-item" href="#">Perfil</a>
@@ -56,12 +56,18 @@
                         <div class="col-lg-6">
                             <div class="about-text go-to">
                                 <h3 class="dark-color">
-                                    {% if request.session.usuario_nombre %}
-                                        {{ request.session.usuario_nombre }}
+                                    {% if request.session.usuario_id %}
+                                        {{ usuario.userName }} {{ usuario.userAp }}
                                     {% endif %}
                                 </h3>
                                 <h6 class="theme-color lead">{{ usuario.rolEmpresa }}</h6>
-                                <p>Breve descripción de la empresa, su historia, inicios, entre otros detalles</p>
+                                <p>
+                                    {% if empresa %}
+                                        {{ empresa.descripcion }}
+                                    {% else %}
+                                        Sin empresa asociada.
+                                    {% endif %}
+                                </p>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="media">

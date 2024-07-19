@@ -81,3 +81,9 @@ class UsuarioForm(ModelForm):
     class Meta:
         model = Usuario
         fields = '__all__'
+
+
+class ProductForm(forms.ModelForm):
+    class Meta:
+        model = Productos
+        fields = ['nombreProducto', 'descProducto', 'peso', 'stock', 'precio', 'rolEmpresa']

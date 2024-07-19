@@ -13,5 +13,8 @@ urlpatterns = [
     path('contactanos', views.contactanos, name='contactanos'),
     path('accounts/login/', CustomLoginView.as_view(), name='login'),
     ##path('logout/', LogoutView.as_view(), name='logout'),
+    path('editar_producto/<int:producto_id>', views.editar_producto, name='editar_producto'),
+    path('agregar_producto', views.agregar_producto, name='agregar_producto'), 
+    path('borrar_producto/<int:producto_id>', views.borrar_producto, name='borrar_producto'), 
 ]
     

@@ -1,0 +1,88 @@
+{% load static %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="shortcut icon" href="{% static 'bodega/icons/yelp.svg' %}">
+  <title>Stock&Store</title>
+  <link rel="stylesheet" href="{% static 'bodega/style.css' %}">
+  <link rel="stylesheet" href="{% static 'bodega/css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'bodega/icons/font/bootstrap-icons.css' %}">
+</head>
+<body>
+    <div class="d-flex h-100"></div>
+        <div class="sidebar nav flex-column align-items-center align-items-sm-start d-flex px-3 col-sm-auto pt-2 text-white min-vh-100" style="position: fixed;">
+            <div class="d-flex align-items-center">
+                <i class="bi-yelp fs-2"></i>
+                <div class="text-sm-start fs-3  fs-md-1 d-sm-inline d-none">Stock&Store</div>
+            </div>
+            <hr class="w-100 mt-3 mb-3">
+            <br>
+            <ul class="nav nav-pills flex-column mb-sm-auto align-self-begin align-items-sm-start" id="menu">
+                <li class="nav-item">
+                    <a href="javascript:location.reload()" class="nav-link align-middle  px-0 text-white" >
+                        <i class="fs-2 bi-house"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inicio</span>
+                    </a> 
+                </li>
+                <li class="nav-item">
+                    <a href="{% url 'inventario' %}" class="nav-link align-middle rounded-pill selected">
+                        <i class="fs-2 bi-clipboard2-data"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inventario</span>
+                    </a>
+                    
+                </li>
+            </ul>
+            <div class="dropdown position-absolute bottom-0 mb-3 rounded-pill usuario">
+                <a href="#" class="d-flex align-items-center text-decoration-none 
+                dropdown-toggle text-white" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi-person-circle fs-2"></i>
+                    <span class="d-none d-sm-inline mx-1"> {{ usuario.userMote }} </span>
+                </a>
+                <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Perfil</a>
+                <a class="dropdown-item" href="#">Ajustes de cuenta</a>
+                <hr>
+                <a class="dropdown-item" href="{% url 'logout' %}" id="cerrarSesion">Cerrar Sesion</a>
+                </div>
+            </div>
+        </div><!--Fin de Sidevar-->
+        
+        <div class="contenido align-self-end min-vh-100"><!--Contenido de la página-->
+            <div class="container">
+                <div class="row d-flex justify-content-center align-content-center">
+                    <nav class="navbar fixed navbar-light bg-light rounded-pill mb-3 pr-5" id="finanzas">
+                        <div class="col-2 fecha text-center px-1" id="fecha"></div>
+                        <div class="col-2 money text-center px-1" id="uf"></div>
+                        <div class="col-2 money text-center px-1" id="dolar"></div>
+                        <div class="col-2 money text-center px-1" id="euro"></div>
+                        <div class="col-2 hora text-center px-1 me-0" id="hora"></div>
+                    </nav>
+                </div>
+                
+                <div class="content align-items-center" style="margin-top: 150px;">
+                    <div class="card">
+                        <div class="card-body">
+                            <form method="post">
+                                <div class="mb-3 text-center">
+                                    <img src="{% static 'bodega/img/'|add:producto.nombreProducto|add:'.jpeg' %}" class="img-fluid" alt="img" style="max-width: 300px;">    
+                                    {% csrf_token %}
+                                    {{ form.as_p}}
+                                    <input type="submit" name="opcion" value="Actualizar" class="btn btn-primary">
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+  <script src="{% static 'bodega/js/bootstrap.min.js' %}"></script>  
+  <script type="text/javascript" src="{% static 'bodega/script.js' %}"></script>
+  <script type="text/javascript" src="{% static 'bodega/jQuery.js' %}"></script>
+</body>
+</html>

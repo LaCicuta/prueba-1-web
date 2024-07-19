@@ -7,6 +7,8 @@ from django.contrib.auth.hashers import make_password
 from login.forms import *
 from django.contrib.auth.views import LoginView
 from login.forms import LoginForm
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 
 class CustomLoginView(LoginView):
     template_name = 'login/login.html'
@@ -61,14 +63,21 @@ def inicio(request):
     if usuario_id:
         try:
             usuario = Usuario.objects.get(idUsuario=usuario_id)
+            try:
+                empresa = Empresa.objects.get(rolEmpresa=usuario.rolEmpresa.rolEmpresa)
+            except Empresa.DoesNotExist:
+                empresa = None
+                
         except Usuario.DoesNotExist:
             return HttpResponse('Usuario no encontrado en la base de datos')
-        context = {'usuario': usuario}
+        
+        context = {'usuario': usuario, 'empresa': empresa}
         return render(request, 'bodega/inicio.html', context)
+    
     else:
         return redirect('login')
     
-    
+
 def contactanos(request):
     form = LoginForm()
     context = {'form': form}
@@ -76,5 +85,74 @@ def contactanos(request):
 
 
 def inventario(request):
+    usuario_id = request.session.get('usuario_id')
+    if usuario_id:
+        try:
+            usuario = Usuario.objects.get(idUsuario=usuario_id)
+            try:
+                empresa = Empresa.objects.get(rolEmpresa=usuario.rolEmpresa.rolEmpresa)
+                productos = Productos.objects.filter(rolEmpresa__rolEmpresa=usuario.rolEmpresa.rolEmpresa)
+            except Empresa.DoesNotExist:
+                empresa = None
+                productos = None
+
+                
+        except Usuario.DoesNotExist:
+            return HttpResponse('Usuario no encontrado en la base de datos')
+        
+        context = {'usuario': usuario, 'empresa': empresa, 'productos':productos}
+        return render(request, 'bodega/inventario.html', context)
+    
+    else:
+        return redirect('login')
+    
+def editar_producto(request, producto_id):
+    producto = get_object_or_404(Productos, idProducto=producto_id)
+    if request.method == "POST":
+        form = ProductForm(request.POST, instance=producto)
+        if form.is_valid():
+            form.save()
+            return redirect('inventario')  # Redirige a la vista de inventario después de guardar
+    else:
+        form = ProductForm(instance=producto)
+    
+    return render(request, 'bodega/editar_producto.html', {'form': form, 'producto': producto})
+
+def agregar_producto(request):
+    print("estoy en controlador agregar_producto...")
     context = {}
-    return render(request, 'bodega/inventario.html', context)
+    
+    if request.method == "POST":
+        print("controlador es un post...")
+        form = ProductForm(request.POST)
+        if form.is_valid:
+            print("estoy en agregar, is_valid")
+            form.save()
+            form = ProductForm()
+            context = {'mensaje': "Ok, datos grabados...", 'form': form}
+            return redirect('inventario')
+    else:
+        form = ProductForm()
+        context = {'form': form}
+        return render(request, 'bodega/agregar_producto.html', context)
+
+
+def borrar_producto(request, producto_id):
+    msj=[]
+    error=[]
+    producto = Productos.objects.all()
+    try:
+        producto = Productos.objects.get(idProducto=producto_id)
+        context={}
+        if producto:
+            producto.delete()
+            msj.append('Producto eliminado correctamente')
+            context = {'producto':producto, 'msj':msj, 'error':error}
+            return render(request, 'bodega/inventario.html', context)
+    except:
+        print("Error. Producto no existe.")
+        producto=Productos.objects.all()
+        msj="Error, id no existe"
+        context={'msj':msj, 'producto':producto}
+        error.append('No existe el producto')
+        return redirect('inventario')

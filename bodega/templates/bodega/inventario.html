@@ -1,179 +1,101 @@
 {% load static %}
+{% load custom_filters %}
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="shortcut icon" href="{% static 'bodega/icons/yelp.svg' %}">
-  <title>Stock&Store</title>
-  <link rel="stylesheet" href="{% static 'bodega/style.css' %}">
-  <link rel="stylesheet" href="{% static 'bodega/css/bootstrap.min.css' %}">
-  <link rel="stylesheet" href="{% static 'bodega/icons/font/bootstrap-icons.css' %}">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" href="{% static 'bodega/icons/yelp.svg' %}">
+    <title>Stock&Store</title>
+    <link rel="stylesheet" href="{% static 'bodega/style.css' %}">
+    <link rel="stylesheet" href="{% static 'bodega/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'bodega/icons/font/bootstrap-icons.css' %}">
 </head>
 <body>
-  <div class="d-flex h-100">
+    <div class="d-flex h-100"></div>
     <div class="sidebar nav flex-column align-items-center align-items-sm-start d-flex px-3 col-sm-auto pt-2 text-white min-vh-100" style="position: fixed;">
-      <div class="d-flex align-items-center">
-        <i class="bi-yelp fs-2"></i>
-        <div class="text-sm-start fs-3  fs-md-1 d-sm-inline d-none">Stock&Store</div>
-      </div>
-      <hr class="w-100 mt-3 mb-3">
-      <br>
-      <ul class="nav nav-pills flex-column mb-sm-auto align-self-begin align-items-sm-start" id="menu">
-        <li class="nav-item">
-          <a href="{% url 'inicio' %}" class="nav-link align-middle px-0 text-white" >
-            <i class="fs-2 bi-house"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inicio</span>
-          </a> 
-        </li>
-        <li class="nav-item">
-          <a href="javascript:location.reload()" class="nav-link align-middle rounded-pill selected">
-            <i class="fs-2 bi-clipboard2-data"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inventario</span>
-          </a>
-        </li>
-      </ul>
-      <div class="dropdown position-absolute bottom-0 mb-3 rounded-pill usuario">
-        <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-white" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <i class="bi-person-circle fs-2"></i>
-          <span class="d-none d-sm-inline mx-1">Usuario</span>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-          <a class="dropdown-item" href="#">Perfil</a>
-          <a class="dropdown-item" href="#">Ajustes de cuenta</a>
-          <hr>
-          <a class="dropdown-item" href="{% url 'index' %}" id="cerrarSesion">Cerrar Sesion</a>
+        <div class="d-flex align-items-center">
+            <i class="bi-yelp fs-2"></i>
+            <div class="text-sm-start fs-3  fs-md-1 d-sm-inline d-none">Stock&Store</div>
         </div>
-      </div>
-    </div>
-  </div><!--Fin de Sidevar-->
-
-  <div class="contenido align-self-end min-vh-100"><!--Contenido de la página-->
-    <div class="container">
-      <div class="row d-flex justify-content-center align-content-center">
-        <nav class="navbar fixed navbar-light bg-light rounded-pill mb-3 pr-5" id="finanzas">
-          <div class="col-2 fecha text-center px-1" id="fecha"></div>
-          <div class="col-2 money text-center px-1" id="uf"></div>
-          <div class="col-2 money text-center px-1" id="dolar"></div>
-          <div class="col-2 money text-center px-1" id="euro"></div>
-          <div class="col-2 hora text-center px-1 me-0" id="hora"></div>
-        </nav>
-
-        <div class="card col-xl-2 col-lg-3 col-md-3 col-6">
-          <img src="{% static 'bodega/img/cholitos.jpeg' %}" class="imagen cholitos" alt="cholitos">
-          <div class="card-body">
-            <h5 class="card-title cholitos">Cholitos</h5>
-            <p class="card-text cholitos">Bolitas de cereal cubiertas de chocolate</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item cholitos peso"><strong>Peso:</strong> 500 gramos</li>
-            <li class="list-group-item cholitos stock"><strong>Stock:</strong> 25</li>
-            <li class="list-group-item cholitos precio"><strong>Precio:</strong> $1750</li>
-          </ul>
-          <div class="card-body" style="margin-left: 20px;"> 
-            <button type="button" for="cholitos" class="boton-card rounded-pill editarProd">
-              Editar detalles
-            </button>
-          </div>
-        </div>
-
-        <div class="card col-xl-2 col-lg-3 col-md-3 col-6">
-          <img src="{% static 'bodega/img/chubi.jpg' %}" class="imagen chubi" alt="chubi">
-          <div class="card-body">
-            <h5 class="card-title chubi">Chubi 9 colores</h5>
-            <p class="card-text chubi">Lentejuelas de chocolate cubiertas de caramelo de colores</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item chubi peso"><strong>Peso:</strong> 500 gramos</li>
-            <li class="list-group-item chubi stock"><strong>Stock:</strong> 12</li>
-            <li class="list-group-item chubi precio"><strong>Precio:</strong> $1200</li>
-          </ul>
-          <div class="card-body" style="margin-left: 20px;"> 
-            <button type="button" for="chubi" class="boton-card rounded-pill editarProd">
-              Editar detalles
-            </button>
-          </div>
-        </div>
-
-        <div class="card col-xl-2 col-lg-3 col-md-3 col-6">
-          <img src="{% static 'bodega/img/huevitos-almendra.webp' %}" class="imagen huevitos" alt="Huevitos de almendras">
-          <div class="card-body">
-            <h5 class="card-title huevitos">Huevitos de almendra</h5>
-            <p class="card-text huevitos">Almendras cubiertas con chocolate y caramelo de colores</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item huevitos peso"><strong>Peso:</strong> 500 gramos</li>
-            <li class="list-group-item huevitos stock"><strong>Stock:</strong> 32</li>
-            <li class="list-group-item huevitos precio"><strong>Precio:</strong> $2100</li>
-          </ul>
-          <div class="card-body" style="margin-left: 20px;"> 
-            <button type="button" for="huevitos" class="boton-card rounded-pill editarProd">
-              Editar detalles
-            </button>
-          </div>
-        </div>
-
-        <div class="card col-xl-2 col-lg-3 col-md-3 col-6">
-          <img src="{% static 'bodega/img/almendra-confitada.jpg' %}" class="imagen almendras-conf" alt="Almendras confitadas">
-          <div class="card-body">
-            <h5 class="card-title almendras-conf">Almendras confitadas</h5>
-            <p class="card-text almendras-conf">Almendras confitadas en caramelo</p>
-          </div>
-          <ul class="list-group list-group-flush">
-            <li class="list-group-item almendras-conf peso"><strong>Peso:</strong> 500 gramos</li>
-            <li class="list-group-item almendras-conf stock"><strong>Stock:</strong> 15</li>
-            <li class="list-group-item almendras-conf precio"><strong>Precio:</strong> $1800</li>
-          </ul>
-          <div class="card-body" style="margin-left: 20px;"> 
-            <button type="button" for="almendras-conf" class="boton-card rounded-pill editarProd">
-              Editar detalles
-            </button>
-          </div>
-        </div>  
-        
-        <!--Modal General-->
-        <div class="modal fade" id="modalGral" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog">
-            <div class="modal-content">
-              <div class="modal-header">
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body align-content-center">
-                <img src="" class="imagen-modal" alt="Huevitos de almendras" id="imgModalGral">
-                <div class="input-group mb-3">
-                  <input type="file" class="form-control" id="inputGroupFile02">
-                  <label class="input-group-text" for="inputGroupFile02">Subir imagen</label>
-                </div>
-                <br>
-                <br>
-                <div class="card-body">
-                  <h6><strong>Nombre: </strong></h6>
-                  <input type="text" class="form-control" id="tituloModGral" value="">
-                  <br>
-                  <h6><strong>Detalle: </strong></h6>
-                  <textarea id="detModGral" name="descripcion" rows="3" cols="60" style="resize: none;"></textarea>
-                </div>
-                <ul class="list-group list-group-flush">
-                  <li class="list-group-item"><strong>Peso:</strong><input type="text" class="form-control" id="pesoModGral"></li>
-                  <li class="list-group-item"><strong>Stock:</strong><input type="text" class="form-control" id="stockModGral"></li>
-                  <li class="list-group-item"><strong>Precio:</strong><input type="text" class="form-control" id="precioModGral"></li>
-                </ul>
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class=" btn btn-primary" data-bs-dismiss="modal">Guardar Cambios</button>
-              </div>
+        <hr class="w-100 mt-3 mb-3">
+        <br>
+        <ul class="nav nav-pills flex-column mb-sm-auto align-self-begin align-items-sm-start" id="menu">
+            <li class="nav-item">
+                <a href="{% url 'inicio' %}" class="nav-link align-middle  px-0 text-white">
+                    <i class="fs-2 bi-house"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inicio</span>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a href="{% url 'inventario' %}" class="nav-link align-middle rounded-pill selected">
+                    <i class="fs-2 bi-clipboard2-data"></i> <span class="fs-5 ms-1 d-none d-sm-inline">Inventario</span>
+                </a>
+            </li>
+            <br><br>
+            <li class="nav-item">
+              <a href="{% url 'agregar_producto' %}" class="nav-link px-0 text-white">
+                  <i class="fs-4 bi-plus-circle"></i> <span class="fs-6 ms-1 d-none d-sm-inline">Agregar producto</span>
+              </a>
+          </li>
+        </ul>
+        <div class="dropdown position-absolute bottom-0 mb-3 rounded-pill usuario">
+            <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle text-white" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i class="bi-person-circle fs-2"></i>
+                <span class="d-none d-sm-inline mx-1"> {{ usuario.userMote }} </span>
+            </a>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                <a class="dropdown-item" href="#">Perfil</a>
+                <a class="dropdown-item" href="#">Ajustes de cuenta</a>
+                <hr>
+                <a class="dropdown-item" href="{% url 'logout' %}" id="cerrarSesion">Cerrar Sesion</a>
             </div>
-          </div>
-        </div>  
+        </div>
+    </div><!--Fin de Sidevar-->
 
-      </div>
+    <div class="contenido align-self-end min-vh-100"><!--Contenido de la página-->
+      <div class="container">
+        <div class="row d-flex justify-content-center align-content-center">
+  
+                <nav class="navbar fixed navbar-light bg-light rounded-pill mb-3 pr-5" id="finanzas">
+                    <div class="col-2 fecha text-center px-1" id="fecha"></div>
+                    <div class="col-2 money text-center px-1" id="uf"></div>
+                    <div class="col-2 money text-center px-1" id="dolar"></div>
+                    <div class="col-2 money text-center px-1" id="euro"></div>
+                    <div class="col-2 hora text-center px-1 me-0" id="hora"></div>
+                </nav>
+
+                {% if productos %}
+                  {% for p in productos %}
+                  <div class="card col-xl-2 col-lg-3 col-md-3 col-6">
+                      <img src="{% static 'bodega/img/'|add:p.nombreProducto|add:'.jpeg' %}" class="imagen cholitos" alt="img">
+                      <div class="card-body">
+                          <h5 class="card-title cholitos">{{ p.nombreProducto }}</h5>
+                          <p class="card-text cholitos">{{ p.descProducto }}</p>
+                      </div>
+                      <ul class="list-group list-group-flush">
+                          <li class="list-group-item cholitos peso"><strong>Peso:</strong> {{ p.peso }} </li>
+                          <li class="list-group-item cholitos stock"><strong>Stock:</strong> {{ p.stock }} </li>
+                          <li class="list-group-item cholitos precio"><strong>Precio:</strong> {{ p.precio }} </li>
+                      </ul>
+                      <div class="card-body">
+                          <a href="{% url 'editar_producto' p.idProducto %}" class="btn btn-primary">Editar</a>
+                          <a href="{% url 'borrar_producto' p.idProducto %}" class="btn btn-warning">Borrar</a>
+                      </div>
+                  </div>
+                  {% endfor %}
+                {% else %}
+                    <p>No hay productos disponibles.</p>
+                {% endif %}
+
+            </div>
+        </div>
     </div>
-  </div>
 
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
-  <script src="{% static 'bodega/js/bootstrap.min.js' %}"></script>  
-  <script type="text/javascript" src="{% static 'bodega/script.js' %}"></script>
-  <script type="text/javascript" src="{% static 'bodega/jQuery.js' %}"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha1/js/bootstrap.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+    <script src="{% static 'bodega/js/bootstrap.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bodega/script.js' %}"></script>
+    <script type="text/javascript" src="{% static 'bodega/jQuery.js' %}"></script>
 </body>
 </html>

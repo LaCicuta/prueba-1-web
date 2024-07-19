@@ -22,27 +22,31 @@ def user_login(request):
             if user is not None:
                 if user.is_active:
                     auth_login(request, user)
-                    return redirect('inicioAdmin')                        
+                    # Guardar solo el id del usuario en la sesión
+                    return redirect('inicioAdmin')
                 else:
                     return HttpResponse('Usuario no activo')
             else:
+                # Verificar si el usuario existe en el modelo Usuario por correo o userMote
                 try:
                     usuario = Usuario.objects.get(userMail=cd['username'])
+                    request.session['usuario_id'] = user.idUsuario
                 except Usuario.DoesNotExist:
                     try:
                         usuario = Usuario.objects.get(userMote=cd['username'])
                     except Usuario.DoesNotExist:
                         return HttpResponse('Usuario no existe o es incorrecto')
                 
-                if usuario.passwordUsuario == cd['password']:
+                # Verificar la contraseña
+                if usuario.passwordUsuario == (cd['password']):
                     request.session['usuario_id'] = usuario.idUsuario
-                    request.session['usuario_nombre'] = f"{usuario.userName} {usuario.userAp}"
                     return redirect('inicio')
                 else:
                     return HttpResponse('Contraseña incorrecta')
     else:
         form = LoginForm()
     return render(request, 'login/login.html', {'form': form})
+
 
 @login_required
 def inicioAdmin(request):

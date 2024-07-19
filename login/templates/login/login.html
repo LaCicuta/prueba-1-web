@@ -125,6 +125,9 @@
                 <div class="mb-3 text-center">
                     ¿Aún no tienes una cuenta? <a href="{% url 'registrarse' %}" class="link">Regístrate Aquí</a> <br>
                     <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+                    <p>
+                      {{ msj }}
+                    </p>
                 </div>
                 {% if form.errors %}
                     <div class="alert alert-danger mt-3">
