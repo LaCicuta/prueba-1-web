@@ -1,4 +1,6 @@
 from django.db import models
+from django.contrib.auth.hashers import make_password, check_password
+from datetime import date
 
 # Create your models here.
 
@@ -57,9 +59,6 @@ class Productos(models.Model):
     def __str__(self):
         return self.nombreProducto
 
-
-    def __str__(self):
-        return self.codigoPhonePais
     
 class Usuario(models.Model):
     idUsuario = models.CharField(max_length=20, db_column='idUsuario',primary_key=True)
@@ -70,13 +69,23 @@ class Usuario(models.Model):
     idPais = models.ForeignKey('Pais', on_delete=models.CASCADE, db_column='idPais')
     idCiudad = models.ForeignKey('Ciudad', on_delete=models.CASCADE, db_column='idCiudad')
     idSexo = models.ForeignKey('Sexo', on_delete=models.CASCADE, db_column='idSexo')
-    phone = models.CharField(max_length=10, blank=False, null=False)
-    userNacimiento = models.CharField(max_length=100, blank=False, null=False)
+    phone = models.CharField(max_length=12, blank=False, null=False)
+    userNacimiento = models.DateField(blank=False, null=False)
     userWebPage = models.CharField(max_length=100)
     userDireccion = models.CharField(max_length=100)
     rolEmpresa = models.ForeignKey('Empresa', on_delete=models.CASCADE, db_column='idEmpresa')
-    passwordUsuario = models.CharField(max_length=50, blank=False, null=False)
+    passwordUsuario = models.CharField(max_length=128, blank=False, null=False)
     activo = models.IntegerField()
+
+    def calcular_edad(self):
+        today = date.today()
+        return today.year - self.userNacimiento.year - ((today.month, today.day) < (self.userNacimiento.month, self.userNacimiento.day))
+
+    def set_password(self, raw_password):
+        self.passwordUsuario = make_password(raw_password)
+
+    def check_password(self, raw_password):
+        return check_password(raw_password, self.passwordUsuario)
 
     def __str__(self):
         return self.userName

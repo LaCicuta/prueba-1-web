@@ -73,13 +73,13 @@
   font-weight:bolder;
 }
 
-.card{
+.cardinventario{
     width: 14rem !important;
     margin: 20px;
     transition: .03s;
     background-color:ghostwhite !important;
 }
-.card:hover{
+.cardinventario:hover{
     border: 3px indigo solid;
 }
 .boton-card{

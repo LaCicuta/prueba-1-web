@@ -29,10 +29,16 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+AUTHENTICATION_BACKENDS = [
+    'login.backends.CustomBackend',  # Tu backend personalizado
+    'django.contrib.auth.backends.ModelBackend',  # El backend predeterminado de Django
+]
+
 
 # Application definition
 
 INSTALLED_APPS = [
+    'login.apps.LoginConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -57,7 +63,7 @@ ROOT_URLCONF = 'stockandstore.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / "templates",],
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -107,7 +113,8 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es'  # Cambia esto según tu preferencia
+USE_L10N = True
 
 TIME_ZONE = 'UTC'
 
@@ -129,4 +136,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'static')
+]
+DATE_INPUT_FORMATS = [
+    '%d/%m/%Y',  # Formato DD/MM/YYYY
+    '%Y-%m-%d',  # Formato YYYY-MM-DD
 ]

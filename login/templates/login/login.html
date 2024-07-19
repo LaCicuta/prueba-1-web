@@ -37,11 +37,6 @@
             <li class="letra-menu">
               <a href="{% url 'index' %}" style="text-decoration: none; color:white;"><i class="bi-house"></i> Inicio</a>
             </li>
-            <li>
-              <a class="letra-menu" href="#" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                Iniciar Sesión / Registrarse
-              </a>
-            </li>
             <li class="nav-item">
                 <a class="letra-menu" href="{% url 'nosotros' %}">Nosotros</a>
             </li>
@@ -102,24 +97,51 @@
   </form>
 
 
-  <div class="container">
-    <div class="content align-items-center">
-        <br><br><br><br>
-        <form method="post">
-              <div class="mb-3 text-center">
-                {% csrf_token %}
-                {{ form.as_p}}
-                <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-              </div>
-              <!--<div class="mb-3 text-center">
-                  ¿Aún no tienes una cuenta? <a href=".{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
-                  <a href="#" class="link">¿Olvidaste tu contraseña?</a>
-              </div>-->
+  <div class="container" style="margin-top:5rem">
+    <div class="card mx-auto" style="max-width: 500px;">
+        <div class="card-header text-center">
+            <h2>Iniciar Sesión</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'login' %}" class="mx-auto" style="max-width: 400px;">
+              {% csrf_token %}
+                <div class="mb-3">
+                    <label for="username" class="form-label">Usuario :</label>
+                    {{ form.username }}
+                    <label for="username" class="warningReq">Campo obligatorio.</label>
+                    <label for="username" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
+                </div>
+                <div class="mb-3">
+                    <label for="pass" class="form-label">Contraseña: </label>
+                    {{ form.password }}
+                    <label for="pass" class="warningReq">Campo obligatorio.</label>
+                </div>
+                <!-- Botón de recordar -->
+                <div class="mb-3 form-check">
+                    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+                    <label class="form-check-label" for="exampleCheck1">Recordarme</label>
+                </div>
+                <button type="submit" class="btn btn-primary w-100">Login</button>
+                <div class="mb-3 text-center">
+                    ¿Aún no tienes una cuenta? <a href="{% url 'registrarse' %}" class="link">Regístrate Aquí</a> <br>
+                    <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+                </div>
+                {% if form.errors %}
+                    <div class="alert alert-danger mt-3">
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <p>{{ error }}</p>
+                            {% endfor %}
+                        {% endfor %}
+                        {% for error in form.non_field_errors %}
+                            <p>{{ error }}</p>
+                        {% endfor %}
+                    </div>
+                {% endif %}
             </form>
-
+        </div>
     </div>
-</div>
-
+  </div>
   <script src="{% static 'bodega/js/bootstrap.min.js' %}"></script>
   <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
   <script src="{% static 'bodega/script.js' %}"></script>

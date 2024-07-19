@@ -41,11 +41,6 @@
                 Iniciar Sesión / Registrarse
               </a>
             </li>
-            <li>
-              <a class="letra-menu" href="{% url 'login' %}">
-                Administración
-              </a>
-            </li>
             <li class="nav-item">
                 <a class="letra-menu" href="{% url 'nosotros' %}">Nosotros</a>
             </li>
@@ -63,48 +58,48 @@
   </nav>
 
   <!-- Modal, especie de ventana flotante -->
-  <form action="{% url 'inicio' %}">
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-          <form action="{% url 'inventario' %}"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
-            <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
-              <div class="mb-3">
-                <label for="correo" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
-                <label for="correo" class="warningReq">Campo obligatorio.</label>
-                <label for="correo" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
-                <label id="emailHelp" class="form-text">Guardamos tus datos con los más altos estándares de Seguridad.</label>
-              </div>
-              <div class="mb-3">
-                <label for="pass" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="pass">
-                <label for="pass" class="warningReq">Campo obligatorio.</label>
-              </div>
-              <!-- boton de check a recordar -->
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-              </div>
-              <div class="mb-3 text-center">
-                  ¿Aún no tienes una cuenta? <a href="{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
-                  <a href="#" class="link">¿Olvidaste tu contraseña?</a>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" onclick="return checkForm()" class="btn btn-primary">Iniciar Sesión</button>
-          </div>
+  <!-- Modal, especie de ventana flotante -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {% csrf_token %}
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+        <form action="{% url 'login' %}" method="POST">
+          {% csrf_token %}
+              <div class="mb-3">
+                <label for="username" class="form-label">Usuario :</label>
+                {{ form.username }}
+                <label for="username" class="warningReq">Campo obligatorio.</label>
+                <label for="username" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
+            </div>
+            <div class="mb-3">
+                <label for="pass" class="form-label">Contraseña: </label>
+                {{ form.password }}
+                <label for="pass" class="warningReq">Campo obligatorio.</label>
+            </div>
+            <!-- boton de check a recordar -->
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Recordarme</label>
+            </div>
+            <div class="mb-3 text-center">
+                ¿Aún no tienes una cuenta? <a href=".{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
+                <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" onclick="return checkForm()" class="btn btn-primary">Iniciar Sesión</button>
+        </div>
+      </form>
       </div>
     </div>
-  </form>
+  </div>
+
 
 
   <div class="container">
@@ -122,86 +117,79 @@
           {% csrf_token %}
           <div class="col-md-4 position-relative">
             <label for="rut" class="form-label">Rut (*)</label>
-            <input type="text" class="form-control" id="rut" name="rut" required>
+            {{ userForm.idUsuario }}
             <label for="rut" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="name" class="form-label">Nombre (*)</label>
-            <input type="text" class="form-control" id="name" name="nombre" required>
+            {{ userForm.userName }}
             <label for="name" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="lName" class="form-label">Apellido (*)</label>
-            <input type="text" class="form-control" id="lName" name="lName" required>
+            {{ userForm.userAp }}
             <label for="lName" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="email" class="form-label">Correo electronico (*)</label>
-            <input type="email" class="form-control" id="email" name="email" required>
+            {{ userForm.userMail }}
             <label for="email" class="warningReq">Campo obligatorio.</label>
             <label for="email" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="pais" class="form-label">Pais (*)</label>
-            <select class="form-select" id="pais" name="pais" required>
-              <option selected disabled value="">Elegir opcion</option>
-              {% for pais in paises %} 
-                <option value="{{ pais.idPais }}">{{ pais.nombrePais }}</option>
-              {% endfor %} 
-            </select>
+            {{ userForm.idPais }}
             <label for="pais" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="ciudad" class="form-label">Ciudad (*)</label>
-            <select class="form-select" id="ciudad" name="ciudad" required>
-              <option selected disabled value="">Elegir opcion</option>
-              {% for ciudad in ciudades %} 
-                <option value="{{ ciudad.idCiudad }}">{{ ciudad.nombreCiudad }}</option>
-              {% endfor %} 
-            </select>
+            {{ userForm.idCiudad }}
             <label for="sexo" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="sexo" class="form-label">Sexo (*)</label>
-            <select class="form-select" id="sexo" name="sexo" required>
-              <option selected disabled value="">Elegir opcion</option>
-              {% for sexo in sexos %} 
-                <option value="{{ sexo.idSexo }}">{{ sexo.detalleSexo }}</option>
-              {% endfor %} 
-            </select>
+            {{ userForm.idSexo }}
             <label for="sexo" class="warningReq">Campo obligatorio.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="phone" class="form-label">Número de contacto (*)</label>
-            <input type="text" class="form-control" id="phone" name="phone" required>
+            {{ userForm.phone }}
             <label for="phone" class="warningReq">Campo obligatorio.</label>
             <label for="phone" class="warningReq" id="msgPhone">El formato de teléfono es +XXXXXXXXXXX (Código de area + 8 dígitos)</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="fNac" class="form-label">Fecha de nacimiento (*)</label>
-            <input type="text" class="form-control" id="fNac" name="fNac" required>
+            {{ userForm.userNacimiento }}
             <label for="fNac" class="warningReq">Campo obligatorio.</label>
             <label for="fNac" class="warningReq" id="msgDate">La fecha no cumple con el formato solicitado.</label>
           </div>
           <div class="col-md-4 position-relative">
             <label for="nickName" class="form-label">Usuario (*)</label>
-            <input type="text" class="form-control" id="nickName" name="nickName" required>
+            {{ userForm.userMote }}
             <label for="nickName" class="warningReq">Campo obligatorio.</label>
           </div>
-          <div class="col-md-4 position-relative">
+          <div class="col-md-8 position-relative">
             <label for="direccion" class="form-label">Direccion (*)</label>
-            <input type="text" class="form-control" id="direccion" name="direccion" required>
+            {{ userForm.userDireccion }}
             <label for="direccion" class="warningReq">Campo obligatorio.</label>
           </div>
+          <div>
+            {{ userForm.rolEmpresa }}
+          </div>  
           <div class="col-md-4 position-relative">
             <label for="password" class="form-label">Contraseña (*)</label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            {{ userForm.password }}
             <label for="password" class="warningReq">Campo obligatorio.</label>
             <label for="password" class="warningReq" id="msgPass">La contraseña que has escrito no cumple los requisitos de la directiva de contraseñas. Prueba con otra que sea más larga o más compleja.</label>
             <label for="password" class="correct" id="msgPassOk">La contraseña elegida es segura.</label>
           </div>
+          <div class="col-md-4 position-relative">
+            <label for="password2" class="form-label">Repita Contraseña (*)</label>
+            {{ userForm.password2 }}
+            <label for="password2" class="warningReq" id="msgPass">Las contraseñas no coinciden.</label>
+          </div>
           <div class="col-12">
-            <button class="btn btn-primary" type="submit" onclick="return checkForm()" id="submitBtn">Crear cuenta</button>
+            <button class="btn btn-primary" type="submit" id="submitBtn">Crear cuenta</button>
           </div>
         </form>
       </div>

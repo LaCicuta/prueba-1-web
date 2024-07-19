@@ -43,7 +43,7 @@
                 <a class="dropdown-item" href="#">Perfil</a>
                 <a class="dropdown-item" href="#">Ajustes de cuenta</a>
                 <hr>
-                <a class="dropdown-item" href="{% url 'index' %}" id="cerrarSesion">Cerrar Sesion</a>
+                <a class="dropdown-item" href="{% url 'logout' %}" id="cerrarSesion">Cerrar Sesion</a>
                 </div>
             </div>
         </div>
@@ -55,44 +55,48 @@
                     <div class="row align-items-center flex-row-reverse">
                         <div class="col-lg-6">
                             <div class="about-text go-to">
-                                <h3 class="dark-color">Nombre de usuario</h3>
-                                <h6 class="theme-color lead">Empresa y core de empresa</h6>
+                                <h3 class="dark-color">
+                                    {% if request.session.usuario_nombre %}
+                                        {{ request.session.usuario_nombre }}
+                                    {% endif %}
+                                </h3>
+                                <h6 class="theme-color lead">{{ usuario.rolEmpresa }}</h6>
                                 <p>Breve descripción de la empresa, su historia, inicios, entre otros detalles</p>
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="media">
                                             <label>Rut</label>
-                                            <p>xx.xxx.xxx-x</p>
+                                            <p>{{ usuario.idUsuario }}</p>
                                         </div>
                                         <div class="media">
                                             <label>Edad</label>
-                                            <p>xx años</p>
+                                            <p>{{ usuario.calcular_edad }} años</p>
                                         </div>
                                         <div class="media">
                                             <label>Comuna</label>
-                                            <p>Quilicura</p>
+                                            <p>{{ usuario.idCiudad.nombreCiudad }}</p>
                                         </div>
                                         <div class="media">
                                             <label>Dirección</label>
-                                            <p>Pasaje XXX n°xxxx, villa desconocida</p>
+                                            <p>{{ usuario.userDireccion }}</p>
                                         </div>
                                     </div>
                                     <div class="col-md-6">
                                         <div class="media">
                                             <label>Correo Electrónico</label>
-                                            <p>info@dominio.com</p>
+                                            <p>{{ usuario.userMail }}</p>
                                         </div>
                                         <div class="media">
-                                            <label>teléfono</label>
-                                            <p>+569 XXXXXXXX</p>
+                                            <label>Teléfono</label>
+                                            <p>{{ usuario.phone }}</p>
                                         </div>
                                         <div class="media">
                                             <label>Página Web</label>
-                                            <p>www.stock&store.com</p>
+                                            <p>{{ usuario.userWebPage }}</p>
                                         </div>
                                         <div class="media">
                                             <label>Rol de empresa</label>
-                                            <p>XX.XXX.XXX-XX</p>
+                                            <p>{{ usuario.rolEmpresa.nombreEmpresa }}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -41,11 +41,6 @@
                 Iniciar Sesión / Registrarse
               </a>
             </li>
-            <li>
-              <a class="letra-menu" href="{% url 'login' %}">
-                Administración
-              </a>
-            </li>
             <li class="nav-item">
                 <a class="letra-menu" href="{% url 'nosotros' %}">Nosotros</a>
             </li>
@@ -62,48 +57,48 @@
     </div>
   </nav>
   <!-- Modal, especie de ventana flotante -->
-  <form action="{% url 'inicio' %}">
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
-            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-          <form action="{% url 'inventario' %}"><!--Redirige página a inventario.html cuando se presiona "iniciar sesión" -->
-            <!-- Cuadrado de recepcion de informacion con un comentario abajo -->
-              <div class="mb-3">
-                <label for="correo" class="form-label">Correo Electrónico</label>
-                <input type="email" class="form-control" id="correo" aria-describedby="emailHelp">
-                <label for="correo" class="warningReq">Campo obligatorio.</label>
-                <label for="correo" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
-                <label id="emailHelp" class="form-text">Guardamos tus datos con los más altos estándares de Seguridad.</label>
-              </div>
-              <div class="mb-3">
-                <label for="pass" class="form-label">Contraseña</label>
-                <input type="password" class="form-control" id="pass">
-                <label for="pass" class="warningReq">Campo obligatorio.</label>
-              </div>
-              <!-- boton de check a recordar -->
-              <div class="mb-3 form-check">
-                <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                <label class="form-check-label" for="exampleCheck1">Recordarme</label>
-              </div>
-              <div class="mb-3 text-center">
-                  ¿Aún no tienes una cuenta? <a href="{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
-                  <a href="#" class="link">¿Olvidaste tu contraseña?</a>
-              </div>
-            </form>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
-            <button type="submit" onclick="return checkForm()" class="btn btn-primary">Iniciar Sesión</button>
-          </div>
+  <!-- Modal, especie de ventana flotante -->
+  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    {% csrf_token %}
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <i class="bi-yelp fs-1"></i><h1 class="modal-title fs-5" id="exampleModalLabel">Stock&Store</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+        <div class="modal-body">
+        <form action="{% url 'login' %}" method="POST">
+          {% csrf_token %}
+              <div class="mb-3">
+                <label for="username" class="form-label">Usuario :</label>
+                {{ form.username }}
+                <label for="username" class="warningReq">Campo obligatorio.</label>
+                <label for="username" class="warningReq" id="msgCorreo">Correo electrónico no válido.</label>
+            </div>
+            <div class="mb-3">
+                <label for="pass" class="form-label">Contraseña: </label>
+                {{ form.password }}
+                <label for="pass" class="warningReq">Campo obligatorio.</label>
+            </div>
+            <!-- boton de check a recordar -->
+            <div class="mb-3 form-check">
+              <input type="checkbox" class="form-check-input" id="exampleCheck1">
+              <label class="form-check-label" for="exampleCheck1">Recordarme</label>
+            </div>
+            <div class="mb-3 text-center">
+                ¿Aún no tienes una cuenta? <a href=".{% url 'registrarse' %}" class="link">Registrate Aquí</a> <br>
+                <a href="#" class="link">¿Olvidaste tu contraseña?</a>
+            </div>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+          <button type="submit" onclick="return checkForm()" class="btn btn-primary">Iniciar Sesión</button>
+        </div>
+      </form>
       </div>
     </div>
-  </form>
+  </div>
+
 
   <div class="container">
     <div class="content">

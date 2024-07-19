@@ -95,7 +95,7 @@
                 <td><a href="{% url 'modificar_rubro' id=r.idRubro %}" class="btn btn-primary">Modificar</a></td>
             </tr>
             {% endfor %}
-        </table>
+        </table><br><br>
 
         <table class="table table-striped">
             <th>Usuario</th>
@@ -108,9 +108,13 @@
             <tr>
                 <td>{{u.userMote}}</td>
                 <td>{{u.idUsuario}}</td>
-                <td>{{u.userName}} {{u.userName}}</td>
+                <td>{{u.userName}} {{u.userAp}}</td>
                 <td>{{u.userMail}}</td>
-                <td><a href="{% url 'eliminar_usuario' id=u.idUsuario %}" class="btn btn-danger">Eliminar</a></td>
+                {% if u.activo == 1 %}
+                    <td><a href="{% url 'desactivar_usuario' id=u.idUsuario %}" class="btn btn-warning">Deshabilitar</a></td>
+                {% else %}
+                    <td><a href="{% url 'activar_usuario' id=u.idUsuario %}" class="btn btn-info">Habilitar</a></td>
+                {% endif %}
                 <td><a href="{% url 'modificar_usuario' id=u.idUsuario %}" class="btn btn-primary">Modificar</a></td>
             </tr>
             {% endfor %}
