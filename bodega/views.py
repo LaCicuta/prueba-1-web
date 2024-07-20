@@ -30,6 +30,7 @@ def registrarse(request):
     if request.method == "POST":
         userForm = RegistroUsuario(request.POST)
         if userForm.is_valid():
+            return HttpResponse('Formulario Inválido:')
             cd = userForm.cleaned_data
             newUser = Usuario(
                 idUsuario=cd['idUsuario'],
@@ -55,7 +56,7 @@ def registrarse(request):
             return HttpResponse(f'Formulario Inválido:\n{error_messages}')
     else:
         userForm = RegistroUsuario()
-    return render(request, 'bodega/registrarse.html', {'userForm': userForm, 'form': form})
+        return render(request, 'bodega/registrarse.html', {'userForm': userForm, 'form': form})
 
 
 def inicio(request):
